@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/main_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="2"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <!--  COLUMN  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"/>
+
+        <!--  COLUMN  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <!--  ROW  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight=".95">
+
+                <!--  ITEM  -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                    android:layout_weight="1">
+
+                    <!--  Button -->
+                    <LinearLayout
+                        android:id="@+id/home_menu_news_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/menu_item_background_selector"
+                        android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                        android:layout_margin="@dimen/menu_item_layout_margin"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
+                            android:src="@drawable/news"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:gravity="center"
+                            android:text="@string/news"
+                            android:textSize="@dimen/menu_item_text_size"
+                            android:textColor="@android:color/white"/>
+                    </LinearLayout>
+
+                    <!--  Notification badge -->
+                    <FrameLayout
+                        android:id="@+id/home_menu_news_notification_badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/menu_item_notification_bubble"/>
+                        <TextView
+                            android:id="@+id/home_menu_news_notification_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:text="20"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"/>
+                    </FrameLayout>
+
+                </RelativeLayout>
+
+                <!--  ITEM  -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                    android:layout_weight="1">
+
+                    <!--  Button -->
+                    <LinearLayout
+                        android:id="@+id/home_menu_offers_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:layout_gravity="center_horizontal"
+                        android:gravity="center_horizontal"
+                        android:background="@drawable/menu_item_background_selector"
+                        android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                        android:layout_margin="@dimen/menu_item_layout_margin"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="2"
+                            android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
+                            android:src="@drawable/offers"/>
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_weight="4"
+                            android:gravity="center"
+                            android:text="@string/offers"
+                            android:textSize="@dimen/menu_item_text_size"
+                            android:textColor="@android:color/white"/>
+                    </LinearLayout>
+
+                    <!--  Notification badge -->
+                    <FrameLayout
+                        android:id="@+id/home_menu_offers_notification_badge"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentTop="true">
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/menu_item_notification_bubble"/>
+                        <TextView
+                            android:id="@+id/home_menu_offers_notification_text"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:layout_gravity="center"
+                            android:text="20"
+                            android:textColor="@android:color/white"
+                            android:textSize="10sp"/>
+                    </FrameLayout>
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <!--  ROW  -->
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:orientation="horizontal"-->
+                <!--android:layout_weight="1">-->
+
+                <!--&lt;!&ndash;  ITEM  &ndash;&gt;-->
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/home_menu_news_item"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:background="@drawable/menu_item_background_selector"-->
+                    <!--android:paddingBottom="@dimen/menu_item_layout_bottom_padding"-->
+                    <!--android:layout_margin="@dimen/menu_item_layout_margin"-->
+                    <!--android:orientation="vertical">-->
+                    <!--<ImageView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="2"-->
+                        <!--android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"-->
+                        <!--android:src="@drawable/news"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="4"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="@string/news"-->
+                        <!--android:textSize="@dimen/menu_item_text_size"-->
+                        <!--android:textColor="@android:color/white"/>-->
+                <!--</LinearLayout>-->
+
+                <!--&lt;!&ndash;  ITEM  &ndash;&gt;-->
+                <!--<LinearLayout-->
+                    <!--android:id="@+id/home_menu_offers_item"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:gravity="center_horizontal"-->
+                    <!--android:background="@drawable/menu_item_background_selector"-->
+                    <!--android:paddingBottom="@dimen/menu_item_layout_bottom_padding"-->
+                    <!--android:layout_margin="@dimen/menu_item_layout_margin"-->
+                    <!--android:orientation="vertical">-->
+                    <!--<ImageView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="2"-->
+                        <!--android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"-->
+                        <!--android:src="@drawable/offers"/>-->
+                    <!--<TextView-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="match_parent"-->
+                        <!--android:layout_weight="4"-->
+                        <!--android:gravity="center"-->
+                        <!--android:text="@string/offers"-->
+                        <!--android:textSize="@dimen/menu_item_text_size"-->
+                        <!--android:textColor="@android:color/white"/>-->
+                <!--</LinearLayout>-->
+
+
+            <!--</LinearLayout>-->
+
+            <!--  ROW  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <!--  ITEM  -->
+                <LinearLayout
+                    android:id="@+id/home_menu_library_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/menu_item_background_selector"
+                    android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                    android:layout_margin="@dimen/menu_item_layout_margin"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
+                        android:src="@drawable/library"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="@string/library"
+                        android:textSize="@dimen/menu_item_text_size"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
+
+                <!--  ITEM  -->
+                <LinearLayout
+                    android:id="@+id/home_menu_magazine_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/menu_item_background_selector"
+                    android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                    android:layout_margin="@dimen/menu_item_layout_margin"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
+                        android:src="@drawable/magazine"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="@string/magazine"
+                        android:textSize="@dimen/menu_item_text_size"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <!--  ROW  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_weight="1">
+
+                <!--  ITEM  -->
+                <LinearLayout
+                    android:id="@+id/home_menu_members_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/menu_item_background_selector"
+                    android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                    android:layout_margin="@dimen/menu_item_layout_margin"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
+                        android:src="@drawable/members"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="@string/members"
+                        android:textSize="@dimen/menu_item_text_size"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
+
+                <!--  ITEM  -->
+                <LinearLayout
+                    android:id="@+id/home_menu_contacts_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:background="@drawable/menu_item_background_selector"
+                    android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                    android:layout_margin="@dimen/menu_item_layout_margin"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
+                        android:src="@drawable/contacts"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="4"
+                        android:gravity="center"
+                        android:text="@string/contacts"
+                        android:textSize="@dimen/menu_item_text_size"
+                        android:textColor="@android:color/white"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!--  ROW  -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <!--  COLUMN  -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1.5"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>
