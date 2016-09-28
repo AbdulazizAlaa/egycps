@@ -17,7 +17,6 @@
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
         <LinearLayout
-            android:id="@+id/offers_categories_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">
@@ -69,5 +68,12 @@
             android:textColor="#FFFFFF"
             android:layout_gravity="left"/>
     </LinearLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/offers_categories_cat_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="vertical"/>
 
 </LinearLayout>

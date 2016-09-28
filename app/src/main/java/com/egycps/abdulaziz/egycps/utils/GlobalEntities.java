@@ -12,6 +12,9 @@ public class GlobalEntities {
     public final static String DATA_MANAGER_TAG = "data_manager";
     public final static String SERVICE_TAG = "service";
 
+    //tags
+    public final static String OFFER_CATEGORY_ID_TAG = "category_id";
+
     //activities and presentation layer
     public final static String SPLASH_PRESENTER_TAG = "splash_presenter";
     public final static String SPLASH_ACTIVITY_TAG = "splash_activity";
@@ -31,8 +34,6 @@ public class GlobalEntities {
     public final static String CONTACTS_ACTIVITY_TAG = "contacts_activity";
     public final static String MEMBERS_PRESENTER_TAG = "members_presenter";
     public final static String MEMBERS_ACTIVITY_TAG = "members_activity";
-
-
 
     //services
     public final static String MY_GCM_LISTENER_SERVICE_TAG = "gcm_listener_service";

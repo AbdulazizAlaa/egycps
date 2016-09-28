@@ -1,6 +1,6 @@
 package com.egycps.abdulaziz.egycps.data.remote;
 
-import com.egycps.abdulaziz.egycps.data.model.OfferCategory;
+import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -27,15 +27,15 @@ import rx.Observable;
 public interface Service {
 
     @GET("feed/offerallCat.json")
-    Observable<ArrayList<OfferCategory>> getOfferCategories();
+    Observable<ArrayList<OffersCategory>> getOfferCategories();
 
     /******** Helper class that sets up a new services *******/
     class Creator{
         public static Service getService(){
-            Type offerCategoriesListType = new TypeToken<ArrayList<OfferCategory>>(){}.getType();
+            Type offerCategoriesListType = new TypeToken<ArrayList<OffersCategory>>(){}.getType();
 
             Gson gson = new GsonBuilder()
-                        .registerTypeAdapter(offerCategoriesListType, new OfferCategoriesDeserializer<ArrayList<OfferCategory>>())
+                        .registerTypeAdapter(offerCategoriesListType, new OfferCategoriesDeserializer<ArrayList<OffersCategory>>())
                         .create();
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(GlobalEntities.ENDPOINT)

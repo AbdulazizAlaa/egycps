@@ -11,7 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
-import com.egycps.abdulaziz.egycps.data.model.OfferCategory;
 import com.egycps.abdulaziz.egycps.ui.contacts.Contacts;
 import com.egycps.abdulaziz.egycps.ui.library.Library;
 import com.egycps.abdulaziz.egycps.ui.magazine.Magazine;

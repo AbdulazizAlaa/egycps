@@ -8,8 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.egycps.abdulaziz.egycps.R;
-import com.egycps.abdulaziz.egycps.data.model.OfferCategory;
-import com.egycps.abdulaziz.egycps.data.remote.Service;
+import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.ui.home.Home;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
@@ -109,7 +108,7 @@ public class Splash extends AppCompatActivity implements SplashBaseView{
     }
 
     @Override
-    public void saveCategories(List<OfferCategory> categories) {
+    public void saveCategories(List<OffersCategory> categories) {
 
     }
 
