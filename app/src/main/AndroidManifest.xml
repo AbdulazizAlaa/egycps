@@ -30,35 +30,35 @@
         <activity
             android:name=".ui.home.Home"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ui.offers.categories.OffersCategories"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ui.offers.list.OffersList"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ui.contacts.Contacts"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ui.library.Library"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ui.magazine.Magazine"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ui.members.Members"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ui.news.News"
             android:screenOrientation="portrait"
-            android:theme="@style/AppTheme"/>
+            android:theme="@style/FullscreenTheme"/>
     </application>
 
 </manifest>

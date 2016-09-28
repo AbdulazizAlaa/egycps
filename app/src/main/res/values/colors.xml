@@ -5,4 +5,11 @@
     <color name="colorAccent">#FF4081</color>
 
     <color name="menu_item_background_selected_color">#161479</color>
+
+    <color name="toolbar_background_color">#FFFFFF</color>
+    <color name="activity_title_color">#f71a237e</color>
+    <color name="toolbar_divider_color">#acaaaa</color>
+    <color name="toolbar_home_btn_selected_color">#811a237e</color>
+    <color name="toolbar_home_btn_normal_color">#00ffffff</color>
+
 </resources>

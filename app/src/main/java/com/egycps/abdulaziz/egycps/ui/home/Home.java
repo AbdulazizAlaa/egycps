@@ -12,6 +12,12 @@ import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.data.model.OfferCategory;
+import com.egycps.abdulaziz.egycps.ui.contacts.Contacts;
+import com.egycps.abdulaziz.egycps.ui.library.Library;
+import com.egycps.abdulaziz.egycps.ui.magazine.Magazine;
+import com.egycps.abdulaziz.egycps.ui.members.Members;
+import com.egycps.abdulaziz.egycps.ui.news.News;
+import com.egycps.abdulaziz.egycps.ui.offers.categories.OffersCategories;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
 public class Home extends Activity implements View.OnClickListener{
@@ -70,26 +76,32 @@ public class Home extends Activity implements View.OnClickListener{
         switch(v.getId()){
             case R.id.home_menu_news_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: news");
+                startActivity(News.getStartIntent(this));
                 break;
 
             case R.id.home_menu_offers_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: offers");
+                startActivity(OffersCategories.getStartIntent(this));
                 break;
 
             case R.id.home_menu_library_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: library");
+                startActivity(Library.getStartIntent(this));
                 break;
 
             case R.id.home_menu_magazine_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: magazine");
+                startActivity(Magazine.getStartIntent(this));
                 break;
 
             case R.id.home_menu_members_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: members");
+                startActivity(Members.getStartIntent(this));
                 break;
 
             case R.id.home_menu_contacts_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: contacts");
+                startActivity(Contacts.getStartIntent(this));
                 break;
         }
     }
