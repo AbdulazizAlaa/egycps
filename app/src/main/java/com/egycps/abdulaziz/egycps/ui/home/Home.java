@@ -1,6 +1,8 @@
 package com.egycps.abdulaziz.egycps.ui.home;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
+import com.egycps.abdulaziz.egycps.data.model.OfferCategory;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
 public class Home extends Activity implements View.OnClickListener{
@@ -18,6 +21,12 @@ public class Home extends Activity implements View.OnClickListener{
     FrameLayout newsNotificationBadge, offersNotificationBadge;
 
     TextView newsNotificationText, offersNotificationText;
+
+    public static Intent getStartIntent(Context context){
+        Intent i = new Intent(context, Home.class);
+
+        return i;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -103,8 +103,8 @@ public class Splash extends AppCompatActivity implements SplashBaseView{
     private void jump(){
         if(isFinishing())
             return;
-        Intent i = new Intent(Splash.this, Home.class);
-        startActivity(i);
+
+        startActivity(Home.getStartIntent(this));
         finish();
     }
 
