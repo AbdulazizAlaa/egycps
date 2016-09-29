@@ -22,7 +22,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
 
     ArrayList<OffersCategory> data;
-    private final PublishSubject<String> onClickSubject = PublishSubject.create();
+    private final PublishSubject<OffersCategory> onClickSubject = PublishSubject.create();
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView categoryIV;
@@ -56,13 +56,13 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final String id = data.get(position).getId();
+        final OffersCategory cat = data.get(position);
         holder.categoryTV.setText(data.get(position).getTitle());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickSubject.onNext(id);
+                onClickSubject.onNext(cat);
             }
         });
         //TODO: get image url and load image to view
@@ -73,7 +73,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         return data.size();
     }
 
-    public Observable<String> getPositionClicks(){
+    public Observable<OffersCategory> getPositionClicks(){
         return onClickSubject.asObservable();
     }
 }

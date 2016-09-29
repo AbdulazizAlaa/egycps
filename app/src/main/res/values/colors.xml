@@ -16,4 +16,6 @@
 
     <color name="category_item_text_color">#FFFFFF</color>
     <color name="category_item_text_background_color">#AA000000</color>
+
+    <color name="offer_item_text_color">#f72534cf</color>
 </resources>

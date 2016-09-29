@@ -14,6 +14,7 @@ public class GlobalEntities {
 
     //tags
     public final static String OFFER_CATEGORY_ID_TAG = "category_id";
+    public final static String OFFER_CATEGORY_TITLE_TAG = "category_title";
 
     //activities and presentation layer
     public final static String SPLASH_PRESENTER_TAG = "splash_presenter";

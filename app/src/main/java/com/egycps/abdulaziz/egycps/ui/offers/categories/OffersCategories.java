@@ -83,12 +83,14 @@ public class OffersCategories extends AppCompatActivity implements View.OnClickL
         categoriesAdapter = new CategoriesAdapter(categoriesList);
         categoriesRecyclerView.setAdapter(categoriesAdapter);
         categoriesAdapter.getPositionClicks()
-                        .subscribe(new Action1<String>() {
+                        .subscribe(new Action1<OffersCategory>() {
                             @Override
-                            public void call(String id) {
-                                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "category id:: "+id);
+                            public void call(OffersCategory cat) {
+                                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "category id:: "+cat.getId());
+                                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "category title:: "+cat.getTitle());
                                 Intent i = OffersList.getStartIntent(context);
-                                i.putExtra(GlobalEntities.OFFER_CATEGORY_ID_TAG, id);
+                                i.putExtra(GlobalEntities.OFFER_CATEGORY_ID_TAG, cat.getId());
+                                i.putExtra(GlobalEntities.OFFER_CATEGORY_TITLE_TAG, cat.getTitle());
                                 startActivity(i);
                             }
                         });
