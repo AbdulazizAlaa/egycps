@@ -10,10 +10,16 @@ import java.util.List;
  */
 public interface OffersCategoriesBaseView extends BaseView{
 
+    void syncCompleted();
+
+    void syncOffersCategories(OffersCategory category);
+
+    void syncError(Throwable e);
+
     void showOffersCategories(List<OffersCategory> categories);
 
     void showOffersCategoriesEmpty();
 
-    void showError();
+    void showError(Throwable e);
 
 }

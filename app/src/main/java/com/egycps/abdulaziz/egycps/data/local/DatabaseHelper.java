@@ -52,18 +52,19 @@ public class DatabaseHelper {
     }
 
     public Observable<OffersCategory> setOffersCategories(final Collection<OffersCategory> categories){
-        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setOffersCategories");
+        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setOffersCategories: "+categories.size());
         return Observable.create(new Observable.OnSubscribe<OffersCategory>() {
             @Override
             public void call(Subscriber<? super OffersCategory> subscriber) {
                 if(subscriber.isUnsubscribed()) return;
                 BriteDatabase.Transaction transaction = mDB.newTransaction();
                 try {
-                    mDB.delete(Db.OffersCategoriesTable.TABLE_NAME, null);
+//                    mDB.delete(Db.OffersCategoriesTable.TABLE_NAME, null);
                     for(OffersCategory category : categories){
                         long result = mDB.insert(Db.OffersCategoriesTable.TABLE_NAME,
                                     Db.OffersCategoriesTable.toContentValues(category),
                                     SQLiteDatabase.CONFLICT_REPLACE);
+                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setOffersCategories: category: "+category.getTitle()+" result: "+result);
 
                         if(result >= 0) subscriber.onNext(category);
                     }
@@ -81,11 +82,18 @@ public class DatabaseHelper {
     public Observable<List<OffersCategory>> getOffersCategories(){
         Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: getOffersCategories");
         return mDB.createQuery(Db.OffersCategoriesTable.TABLE_NAME,
-                    "SELECT * FROM " + Db.OffersCategoriesTable.TABLE_NAME)
+                "SELECT * FROM " + Db.OffersCategoriesTable.TABLE_NAME)
                 .mapToList(new Func1<Cursor, OffersCategory>() {
                     @Override
                     public OffersCategory call(Cursor cursor) {
-                        return Db.OffersCategoriesTable.parseCursor(cursor);
+                        OffersCategory category = Db.OffersCategoriesTable.parseCursor(cursor);
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "Cursor Count:: "+cursor.getCount());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "---------------------------------------");
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "id :: "+category.getId());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "title :: "+category.getTitle());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "desc :: "+category.getDescription());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "image :: "+category.getImage());
+                        return category;
                     }
                 });
     }

@@ -62,38 +62,6 @@ public class Splash extends AppCompatActivity implements SplashBaseView{
             }
         }, SPLASH_TIME_OUT);
 
-//        Service.Creator.getService().getOfferCategories()
-//                .subscribeOn(Schedulers.newThread())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .flatMap(new Func1<ArrayList<OfferCategory>, Observable<OfferCategory>>() {
-//                    @Override
-//                    public Observable<OfferCategory> call(ArrayList<OfferCategory> offerCategories) {
-//                        return Observable.from(offerCategories);
-//                    }
-//                })
-//                .subscribe(new Subscriber<OfferCategory>() {
-//                    @Override
-//                    public final void onCompleted() {
-//                        // do nothing
-//                        Log.i(GlobalEntities.SPLASH_ACTIVITY_TAG, "completed");
-//
-//                    }
-//
-//                    @Override
-//                    public final void onError(Throwable e) {
-//                        Log.e(GlobalEntities.SPLASH_ACTIVITY_TAG, e.getMessage());
-//                    }
-//
-//                    @Override
-//                    public final void onNext(OfferCategory response) {
-//                        Log.i(GlobalEntities.SPLASH_ACTIVITY_TAG, "---------------------------------------");
-//                        Log.i(GlobalEntities.SPLASH_ACTIVITY_TAG, "id :: "+response.getId());
-//                        Log.i(GlobalEntities.SPLASH_ACTIVITY_TAG, "title :: "+response.getTitle());
-//                        Log.i(GlobalEntities.SPLASH_ACTIVITY_TAG, "desc :: "+response.getDescription());
-//                        Log.i(GlobalEntities.SPLASH_ACTIVITY_TAG, "image :: "+response.getImage());
-//                    }
-//                });
-
     }
 
     @Override

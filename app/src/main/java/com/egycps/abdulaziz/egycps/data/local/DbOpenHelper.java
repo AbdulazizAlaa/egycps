@@ -8,9 +8,6 @@ import android.util.Log;
 
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
 /**
  * Created by abdulaziz on 9/27/16.
  */
@@ -20,7 +17,7 @@ public class DbOpenHelper extends SQLiteOpenHelper{
     private static DbOpenHelper dbOpenHelper;
 
     public static final String DATABASE_NAME = "egycps.db";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 3;
 
     private DbOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);

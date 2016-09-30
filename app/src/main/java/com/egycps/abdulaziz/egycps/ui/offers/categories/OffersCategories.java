@@ -101,38 +101,13 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
                             }
                         });
 
-        //database
-//        ArrayList<OffersCategory> list = new ArrayList<OffersCategory>();
-//        list.add(new OffersCategory("1", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
-//        list.add(new OffersCategory("2", "Gym", "image", "hiiiiiiiiiiiiiiii"));
-//        list.add(new OffersCategory("3", "Hospitals", "image", "hiiiiiiiiiiiiiiii"));
-//        list.add(new OffersCategory("4", "Cars", "image", "hiiiiiiiiiiiiiiii"));
-//        list.add(new OffersCategory("5", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
-//        list.add(new OffersCategory("6", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
-//        DataManager.getInstance(null, null, null).setOffersCategories(list).subscribe(new Subscriber<OffersCategory>() {
-//            @Override
-//            public void onCompleted() {
-//                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "setOffersCategories: completed");
-//
-//            }
-//
-//            @Override
-//            public void onError(Throwable e) {
-//                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "setOffersCategories: error :: " + e.getMessage());
-//
-//            }
-//
-//            @Override
-//            public void onNext(OffersCategory category) {
-//                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "setOffersCategories: item " + category.getTitle());
-//
-//            }
-//        });
+
 
         //presenter
         mOffersCategoriesPresenter = new OffersCategoriesPresenter(DataManager.getInstance(null, null, null));
         mOffersCategoriesPresenter.attachView(this);
         mOffersCategoriesPresenter.loadOffersCategories();
+        mOffersCategoriesPresenter.syncOffersCategories();
 
     }
 
@@ -147,8 +122,28 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     }
 
     @Override
+    public void syncCompleted() {
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncCompleted");
+        mOffersCategoriesPresenter.loadOffersCategories();
+    }
+
+    @Override
+    public void syncOffersCategories(OffersCategory category) {
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories");
+        mOffersCategoriesPresenter.saveOffersCategories(category);
+    }
+
+    @Override
+    public void syncError(Throwable e) {
+        Log.e(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncError :: " + e.getMessage());
+        mOffersCategoriesPresenter.loadOffersCategories();
+    }
+
+    @Override
     public void showOffersCategories(List<OffersCategory> categories) {
-        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showOffersCategories");
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showOffersCategories"+categories.size());
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showOffersCategories"+categoriesList.size());
+        categoriesList.clear();
         categoriesList.addAll(categories);
         categoriesAdapter.notifyDataSetChanged();
     }
@@ -160,8 +155,8 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     }
 
     @Override
-    public void showError() {
-        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showError");
+    public void showError(Throwable e) {
+        Log.e(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showError :: " + e.getMessage());
         //TODO: add an empty view and snack bar indicting the error
     }
 }

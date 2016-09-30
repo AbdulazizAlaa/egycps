@@ -8,11 +8,13 @@ import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.data.remote.Service;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Singleton;
 
 import rx.Observable;
+import rx.functions.Func1;
 
 /**
  * Created by abdulaziz on 9/27/16.
@@ -49,9 +51,20 @@ public class DataManager {
         return mPreferencesHelper;
     }
 
+    public Observable<OffersCategory> syncOffersCategories(){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncOffersCategories");
+        return mService.getOfferCategories()
+                .flatMap(new Func1<ArrayList<OffersCategory>, Observable<OffersCategory>>() {
+                    @Override
+                    public Observable<OffersCategory> call(ArrayList<OffersCategory> offerCategories) {
+                        return Observable.from(offerCategories);
+                    }
+                });
+    }
+
     public Observable<List<OffersCategory>> getOffersCategories(){
         Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: getOffersCategories");
-        return mDatabaseHelper.getOffersCategories().distinct();
+        return mDatabaseHelper.getOffersCategories();
     }
 
     public Observable<OffersCategory> setOffersCategories(List<OffersCategory> offersCategories){
