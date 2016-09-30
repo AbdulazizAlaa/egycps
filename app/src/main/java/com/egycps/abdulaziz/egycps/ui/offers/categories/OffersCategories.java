@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
+import com.egycps.abdulaziz.egycps.data.DataManager;
 import com.egycps.abdulaziz.egycps.data.model.CategoriesAdapter;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.ui.home.Home;
@@ -24,10 +25,12 @@ import com.egycps.abdulaziz.egycps.ui.offers.list.OffersList;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import rx.Subscriber;
 import rx.functions.Action1;
 
-public class OffersCategories extends AppCompatActivity implements View.OnClickListener{
+public class OffersCategories extends AppCompatActivity implements OffersCategoriesBaseView, View.OnClickListener{
 
     Toolbar toolbar;
     TextView activityTitle;
@@ -39,6 +42,7 @@ public class OffersCategories extends AppCompatActivity implements View.OnClickL
 
     ArrayList<OffersCategory> categoriesList;
 
+    OffersCategoriesPresenter mOffersCategoriesPresenter;
 
     public static Intent getStartIntent(Context context){
         Intent i = new Intent(context, OffersCategories.class);
@@ -50,6 +54,8 @@ public class OffersCategories extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_offers_categories);
+
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "onCreate: created");
 
         init();
     }
@@ -69,12 +75,12 @@ public class OffersCategories extends AppCompatActivity implements View.OnClickL
         categoriesRecyclerView = (RecyclerView) findViewById(R.id.offers_categories_cat_recycler_view);
 
         categoriesList = new ArrayList<OffersCategory>();
-        categoriesList.add(new OffersCategory("1", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
-        categoriesList.add(new OffersCategory("2", "Gym", "image", "hiiiiiiiiiiiiiiii"));
-        categoriesList.add(new OffersCategory("3", "Hospitals", "image", "hiiiiiiiiiiiiiiii"));
-        categoriesList.add(new OffersCategory("4", "Cars", "image", "hiiiiiiiiiiiiiiii"));
-        categoriesList.add(new OffersCategory("5", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
-        categoriesList.add(new OffersCategory("6", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
+//        categoriesList.add(new OffersCategory("1", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
+//        categoriesList.add(new OffersCategory("2", "Gym", "image", "hiiiiiiiiiiiiiiii"));
+//        categoriesList.add(new OffersCategory("3", "Hospitals", "image", "hiiiiiiiiiiiiiiii"));
+//        categoriesList.add(new OffersCategory("4", "Cars", "image", "hiiiiiiiiiiiiiiii"));
+//        categoriesList.add(new OffersCategory("5", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
+//        categoriesList.add(new OffersCategory("6", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
 
         categoriesLayoutManager = new GridLayoutManager(this, 2);
         categoriesRecyclerView.setLayoutManager(categoriesLayoutManager);
@@ -95,6 +101,38 @@ public class OffersCategories extends AppCompatActivity implements View.OnClickL
                             }
                         });
 
+        //database
+//        ArrayList<OffersCategory> list = new ArrayList<OffersCategory>();
+//        list.add(new OffersCategory("1", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
+//        list.add(new OffersCategory("2", "Gym", "image", "hiiiiiiiiiiiiiiii"));
+//        list.add(new OffersCategory("3", "Hospitals", "image", "hiiiiiiiiiiiiiiii"));
+//        list.add(new OffersCategory("4", "Cars", "image", "hiiiiiiiiiiiiiiii"));
+//        list.add(new OffersCategory("5", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
+//        list.add(new OffersCategory("6", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
+//        DataManager.getInstance(null, null, null).setOffersCategories(list).subscribe(new Subscriber<OffersCategory>() {
+//            @Override
+//            public void onCompleted() {
+//                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "setOffersCategories: completed");
+//
+//            }
+//
+//            @Override
+//            public void onError(Throwable e) {
+//                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "setOffersCategories: error :: " + e.getMessage());
+//
+//            }
+//
+//            @Override
+//            public void onNext(OffersCategory category) {
+//                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "setOffersCategories: item " + category.getTitle());
+//
+//            }
+//        });
+
+        //presenter
+        mOffersCategoriesPresenter = new OffersCategoriesPresenter(DataManager.getInstance(null, null, null));
+        mOffersCategoriesPresenter.attachView(this);
+        mOffersCategoriesPresenter.loadOffersCategories();
 
     }
 
@@ -106,5 +144,24 @@ public class OffersCategories extends AppCompatActivity implements View.OnClickL
                 onBackPressed();
                 break;
         }
+    }
+
+    @Override
+    public void showOffersCategories(List<OffersCategory> categories) {
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showOffersCategories");
+        categoriesList.addAll(categories);
+        categoriesAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showOffersCategoriesEmpty() {
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showOffersCategoriesEmpty");
+        //TODO: add an empty view and snack bar indicting the error
+    }
+
+    @Override
+    public void showError() {
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showError");
+        //TODO: add an empty view and snack bar indicting the error
     }
 }

@@ -8,7 +8,12 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.egycps.abdulaziz.egycps.R;
+import com.egycps.abdulaziz.egycps.data.DataManager;
+import com.egycps.abdulaziz.egycps.data.local.DatabaseHelper;
+import com.egycps.abdulaziz.egycps.data.local.DbOpenHelper;
+import com.egycps.abdulaziz.egycps.data.local.PreferencesHelper;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
+import com.egycps.abdulaziz.egycps.data.remote.Service;
 import com.egycps.abdulaziz.egycps.ui.home.Home;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
@@ -39,6 +44,12 @@ public class Splash extends AppCompatActivity implements SplashBaseView{
         setContentView(R.layout.activity_splash);
 
         Log.i(GlobalEntities.SPLASH_ACTIVITY_TAG, "onCreate: Splash");
+
+        DbOpenHelper dbOpenHelper = DbOpenHelper.getInstance(this.getApplicationContext());
+        DatabaseHelper databaseHelper = DatabaseHelper.getInstance(dbOpenHelper);
+        PreferencesHelper preferencesHelper = new PreferencesHelper();
+        Service service = Service.Creator.getService();
+        DataManager dataManager = DataManager.getInstance(service, databaseHelper, preferencesHelper);
 
         mainView = findViewById(R.id.splash_layout);
 

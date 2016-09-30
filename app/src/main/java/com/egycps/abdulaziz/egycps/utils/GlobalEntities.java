@@ -10,7 +10,10 @@ public class GlobalEntities {
 
     //bus classes
     public final static String DATA_MANAGER_TAG = "data_manager";
+    public final static String DATABASE_HELPER_TAG = "database_helper";
     public final static String SERVICE_TAG = "service";
+    public final static String DB_OPEN_HELPER = "db_open_helper";
+
 
     //tags
     public final static String OFFER_CATEGORY_ID_TAG = "category_id";
