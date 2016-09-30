@@ -13,6 +13,8 @@ public class GlobalEntities {
     public final static String DATABASE_HELPER_TAG = "database_helper";
     public final static String SERVICE_TAG = "service";
     public final static String DB_OPEN_HELPER = "db_open_helper";
+    public final static String UTILS_CLASS_TAG = "utils";
+    public final static String APP_DIR_TAG = "egycps_app_dir";
 
 
     //tags

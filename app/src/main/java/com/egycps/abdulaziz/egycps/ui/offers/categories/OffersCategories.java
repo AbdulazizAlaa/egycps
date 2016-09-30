@@ -2,6 +2,7 @@ package com.egycps.abdulaziz.egycps.ui.offers.categories;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,6 +24,7 @@ import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.ui.home.Home;
 import com.egycps.abdulaziz.egycps.ui.offers.list.OffersList;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
+import com.egycps.abdulaziz.egycps.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +88,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
         categoriesRecyclerView.setLayoutManager(categoriesLayoutManager);
 
         final Context context = this;
-        categoriesAdapter = new CategoriesAdapter(categoriesList);
+        categoriesAdapter = new CategoriesAdapter(this, categoriesList);
         categoriesRecyclerView.setAdapter(categoriesAdapter);
         categoriesAdapter.getPositionClicks()
                         .subscribe(new Action1<OffersCategory>() {
@@ -104,7 +106,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
 
 
         //presenter
-        mOffersCategoriesPresenter = new OffersCategoriesPresenter(DataManager.getInstance(null, null, null));
+        mOffersCategoriesPresenter = new OffersCategoriesPresenter(this, DataManager.getInstance(this, null, null, null));
         mOffersCategoriesPresenter.attachView(this);
         mOffersCategoriesPresenter.loadOffersCategories();
         mOffersCategoriesPresenter.syncOffersCategories();
@@ -122,19 +124,20 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     }
 
     @Override
-    public void syncCompleted() {
+    public void syncOffersCategoriesCompleted() {
         Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncCompleted");
+//        mOffersCategoriesPresenter.loadOffersCategories();
+    }
+
+    @Override
+    public void syncOffersCategories(ArrayList<OffersCategory> categories) {
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories");
+        mOffersCategoriesPresenter.saveOffersCategories(categories);
         mOffersCategoriesPresenter.loadOffersCategories();
     }
 
     @Override
-    public void syncOffersCategories(OffersCategory category) {
-        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories");
-        mOffersCategoriesPresenter.saveOffersCategories(category);
-    }
-
-    @Override
-    public void syncError(Throwable e) {
+    public void syncOffersCategoriesError(Throwable e) {
         Log.e(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncError :: " + e.getMessage());
         mOffersCategoriesPresenter.loadOffersCategories();
     }
@@ -155,7 +158,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     }
 
     @Override
-    public void showError(Throwable e) {
+    public void showOffersCategoriesError(Throwable e) {
         Log.e(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showError :: " + e.getMessage());
         //TODO: add an empty view and snack bar indicting the error
     }

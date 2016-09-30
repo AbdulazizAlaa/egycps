@@ -49,7 +49,7 @@ public class Splash extends AppCompatActivity implements SplashBaseView{
         DatabaseHelper databaseHelper = DatabaseHelper.getInstance(dbOpenHelper);
         PreferencesHelper preferencesHelper = new PreferencesHelper();
         Service service = Service.Creator.getService();
-        DataManager dataManager = DataManager.getInstance(service, databaseHelper, preferencesHelper);
+        DataManager dataManager = DataManager.getInstance(this, service, databaseHelper, preferencesHelper);
 
         mainView = findViewById(R.id.splash_layout);
 

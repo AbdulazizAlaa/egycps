@@ -1,5 +1,7 @@
 package com.egycps.abdulaziz.egycps.data.model;
 
+import android.content.Context;
+import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +11,7 @@ import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.ui.offers.categories.OffersCategories;
+import com.egycps.abdulaziz.egycps.utils.Utils;
 
 import java.util.ArrayList;
 
@@ -22,6 +25,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
 
     ArrayList<OffersCategory> data;
+    Context mContext;
     private final PublishSubject<OffersCategory> onClickSubject = PublishSubject.create();
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
@@ -35,7 +39,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         }
     }
 
-    public CategoriesAdapter(ArrayList<OffersCategory> data) {
+    public CategoriesAdapter(Context context, ArrayList<OffersCategory> data) {
+        mContext = context;
         this.data = data;
     }
 
@@ -57,7 +62,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         final OffersCategory cat = data.get(position);
-        holder.categoryTV.setText(data.get(position).getTitle());
+        holder.categoryTV.setText(cat.getTitle());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +70,13 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
                 onClickSubject.onNext(cat);
             }
         });
+
+        String[] names = cat.getImage().split("/");
+        String image_filename = names[names.length-1];
+        Bitmap image = Utils.loadImageFromStorage(mContext, image_filename);
+        if(image != null){
+            holder.categoryIV.setImageBitmap(image);
+        }
         //TODO: get image url and load image to view
     }
 
