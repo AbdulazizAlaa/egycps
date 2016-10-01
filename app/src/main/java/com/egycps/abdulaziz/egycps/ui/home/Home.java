@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.ui.contact_us.ContactUs;
-import com.egycps.abdulaziz.egycps.ui.library.Library;
+import com.egycps.abdulaziz.egycps.ui.library.categories.LibraryCategories;
 import com.egycps.abdulaziz.egycps.ui.magazine.Magazine;
 import com.egycps.abdulaziz.egycps.ui.members.Members;
 import com.egycps.abdulaziz.egycps.ui.news.News;
@@ -85,7 +85,7 @@ public class Home extends Activity implements View.OnClickListener{
 
             case R.id.home_menu_library_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: library");
-                startActivity(Library.getStartIntent(this));
+                startActivity(LibraryCategories.getStartIntent(this));
                 break;
 
             case R.id.home_menu_magazine_item:

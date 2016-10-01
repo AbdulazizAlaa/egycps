@@ -18,8 +18,10 @@ public class GlobalEntities {
 
 
     //tags
-    public final static String OFFER_CATEGORY_ID_TAG = "category_id";
-    public final static String OFFER_CATEGORY_TITLE_TAG = "category_title";
+    public final static String OFFER_CATEGORY_ID_TAG = "offer_category_id";
+    public final static String OFFER_CATEGORY_TITLE_TAG = "offer_category_title";
+    public final static String LIBRARY_CATEGORY_ID_TAG = "library_category_id";
+    public final static String LIBRARY_CATEGORY_TITLE_TAG = "library_category_title";
 
     //activities and presentation layer
     public final static String SPLASH_PRESENTER_TAG = "splash_presenter";
@@ -33,8 +35,10 @@ public class GlobalEntities {
     public final static String OFFERS_LIST_ACTIVITY_TAG = "offers_list_activity";
     public final static String NEWS_PRESENTER_TAG = "news_presenter";
     public final static String NEWS_ACTIVITY_TAG = "news_activity";
-    public final static String LIBRARIES_PRESENTER_TAG = "library_presenter";
-    public final static String LIBRARIES_ACTIVITY_TAG = "library_activity";
+    public final static String LIBRARIES_LIST_PRESENTER_TAG = "library_presenter";
+    public final static String LIBRARIES_LIST_ACTIVITY_TAG = "library_activity";
+    public final static String LIBRARIES_CATEGORIES_PRESENTER_TAG = "library_presenter";
+    public final static String LIBRARIES_CATEGORIES_ACTIVITY_TAG = "library_activity";
     public final static String MAGAZINE_PRESENTER_TAG = "magazine_presenter";
     public final static String MAGAZINE_ACTIVITY_TAG = "magazine_activity";
     public final static String CONTACTS_PRESENTER_TAG = "contacts_presenter";
