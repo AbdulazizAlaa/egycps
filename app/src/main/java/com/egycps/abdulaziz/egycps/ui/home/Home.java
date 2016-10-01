@@ -13,9 +13,9 @@ import android.widget.TextView;
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.ui.contact_us.ContactUs;
 import com.egycps.abdulaziz.egycps.ui.library.categories.LibraryCategories;
-import com.egycps.abdulaziz.egycps.ui.magazine.Magazine;
+import com.egycps.abdulaziz.egycps.ui.magazine.MagazineActivity;
 import com.egycps.abdulaziz.egycps.ui.members.Members;
-import com.egycps.abdulaziz.egycps.ui.news.News;
+import com.egycps.abdulaziz.egycps.ui.news.NewsActivity;
 import com.egycps.abdulaziz.egycps.ui.offers.categories.OffersCategories;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
@@ -75,7 +75,7 @@ public class Home extends Activity implements View.OnClickListener{
         switch(v.getId()){
             case R.id.home_menu_news_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: news");
-                startActivity(News.getStartIntent(this));
+                startActivity(NewsActivity.getStartIntent(this));
                 break;
 
             case R.id.home_menu_offers_item:
@@ -90,7 +90,7 @@ public class Home extends Activity implements View.OnClickListener{
 
             case R.id.home_menu_magazine_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: magazine");
-                startActivity(Magazine.getStartIntent(this));
+                startActivity(MagazineActivity.getStartIntent(this));
                 break;
 
             case R.id.home_menu_members_item:

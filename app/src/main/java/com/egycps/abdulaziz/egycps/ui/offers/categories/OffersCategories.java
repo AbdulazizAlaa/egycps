@@ -30,6 +30,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     Toolbar toolbar;
     TextView activityTitle;
     LinearLayout homeBtn;
+    View mainView;
 
     RecyclerView categoriesRecyclerView;
     RecyclerView.LayoutManager categoriesLayoutManager;
@@ -59,6 +60,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
 
     private void init(){
         //initializing the toolbar
+        mainView = findViewById(R.id.offers_categories_main_view);
         toolbar = (Toolbar) findViewById(R.id.offers_categories_toolbar);
         homeBtn = (LinearLayout) toolbar.findViewById(R.id.offers_categories_home_btn);
         activityTitle = (TextView) findViewById(R.id.offers_categories_title_tv);
@@ -143,6 +145,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     public void syncOffersCategoriesError(Throwable e) {
         Log.e(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncError :: " + e.getMessage());
         mOffersCategoriesPresenter.loadOffersCategories();
+//        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -163,7 +166,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
         //refresh loader
         offersCategoriesRefreshL.setRefreshing(false);
 
-        Snackbar.make(toolbar, "No Categories Could be Showed!!", Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mainView, "Oops.. No Categories Could be Displayed!!", Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -171,7 +174,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
         Log.e(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showError :: " + e.getMessage());
         //refresh loader
         offersCategoriesRefreshL.setRefreshing(false);
-        Snackbar.make(toolbar, e.getMessage(), Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

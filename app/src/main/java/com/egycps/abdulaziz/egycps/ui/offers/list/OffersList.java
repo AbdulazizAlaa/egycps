@@ -2,6 +2,7 @@ package com.egycps.abdulaziz.egycps.ui.offers.list;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +32,7 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
     Toolbar toolbar;
     TextView activityTitle;
     LinearLayout homeBtn;
+    View mainView;
 
     RecyclerView offersRecyclerView;
     RecyclerView.LayoutManager offersLayoutManager;
@@ -69,6 +71,7 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
 
     private void init(){
         //initializing the toolbar
+        mainView = findViewById(R.id.offers_list_main_view);
         toolbar = (Toolbar) findViewById(R.id.offers_list_toolbar);
         homeBtn = (LinearLayout) toolbar.findViewById(R.id.offers_list_home_btn);
         activityTitle = (TextView) findViewById(R.id.offers_list_title_tv);
@@ -138,6 +141,7 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
         Log.e(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "saveOffersList: Error: "+e.getMessage());
         offersListRefreshL.setRefreshing(false);
 
+//        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -150,6 +154,7 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
     public void syncOffersListError(Throwable e) {
         Log.e(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "syncOffersList: Error:: "+e.getMessage());
         mOffersListPresenter.loadOffers(id);
+//        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -173,12 +178,15 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
     public void showOffersListError(Throwable e) {
         Log.e(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "showOffersList: Error:: "+e.getMessage());
         offersListRefreshL.setRefreshing(false);
+        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void showOffersListEmpty() {
         Log.i(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "showOffersList: Empty");
         offersListRefreshL.setRefreshing(false);
+
+        Snackbar.make(mainView, "Oops.. No Offers Could be Displayed!!", Snackbar.LENGTH_SHORT).show();
 
     }
 

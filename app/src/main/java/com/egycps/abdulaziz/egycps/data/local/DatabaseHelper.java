@@ -4,6 +4,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.egycps.abdulaziz.egycps.data.model.Magazine;
+import com.egycps.abdulaziz.egycps.data.model.News;
 import com.egycps.abdulaziz.egycps.data.model.Offer;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
@@ -50,6 +52,99 @@ public class DatabaseHelper {
 
     public BriteDatabase getBriteDb(){
         return mDB;
+    }
+
+    public Observable<Magazine> setMagazines(final Collection<Magazine> magazines){
+        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setMagazines: "+magazines.size());
+        return Observable.create(new Observable.OnSubscribe<Magazine>() {
+            @Override
+            public void call(Subscriber<? super Magazine> subscriber) {
+                if(subscriber.isUnsubscribed()) return;
+                BriteDatabase.Transaction transaction = mDB.newTransaction();
+                try {
+//                    mDB.delete(Db.MagazinesTable.TABLE_NAME, null);
+                    for(Magazine magazine : magazines){
+                        long result = mDB.insert(Db.MagazinesTable.TABLE_NAME,
+                                Db.MagazinesTable.toContentValues(magazine),
+                                SQLiteDatabase.CONFLICT_REPLACE);
+                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setMagazines: magazine: "+magazine.getTitle()+" result: "+result);
+
+                        if(result >= 0) subscriber.onNext(magazine);
+                    }
+                    transaction.markSuccessful();
+                    subscriber.onCompleted();
+                }finally {
+                    transaction.end();
+                }
+            }
+        });
+
+    }
+
+    public Observable<List<Magazine>> getMagazines(){
+        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: getMagazines");
+        return mDB.createQuery(Db.MagazinesTable.TABLE_NAME,
+                "SELECT * FROM " + Db.MagazinesTable.TABLE_NAME)
+                .mapToList(new Func1<Cursor, Magazine>() {
+                    @Override
+                    public Magazine call(Cursor cursor) {
+                        Magazine magazine = Db.MagazinesTable.parseCursor(cursor);
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "Cursor Count:: "+cursor.getCount());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "---------------------------------------");
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "id :: "+magazine.getId());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "title :: "+magazine.getTitle());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "desc :: "+magazine.getPdf());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "image :: "+magazine.getImage());
+                        return magazine;
+                    }
+                });
+    }
+
+    public Observable<News> setNews(final Collection<News> news){
+        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setNews: "+news.size());
+        return Observable.create(new Observable.OnSubscribe<News>() {
+            @Override
+            public void call(Subscriber<? super News> subscriber) {
+                if(subscriber.isUnsubscribed()) return;
+                BriteDatabase.Transaction transaction = mDB.newTransaction();
+                try {
+//                    mDB.delete(Db.NewsTable.TABLE_NAME, null);
+                    for(News n : news){
+                        long result = mDB.insert(Db.NewsTable.TABLE_NAME,
+                                Db.NewsTable.toContentValues(n),
+                                SQLiteDatabase.CONFLICT_REPLACE);
+                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setNews: news: "+n.getTitle()+" result: "+result);
+
+                        if(result >= 0) subscriber.onNext(n);
+                    }
+                    transaction.markSuccessful();
+                    subscriber.onCompleted();
+                }finally {
+                    transaction.end();
+                }
+            }
+        });
+
+    }
+
+    public Observable<List<News>> getNews(){
+        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: getNews");
+        return mDB.createQuery(Db.NewsTable.TABLE_NAME,
+                "SELECT * FROM " + Db.NewsTable.TABLE_NAME +
+                " ORDER BY " + Db.NewsTable.COLUMN_ID + " LIMIT 10")
+                .mapToList(new Func1<Cursor, News>() {
+                    @Override
+                    public News call(Cursor cursor) {
+                        News news = Db.NewsTable.parseCursor(cursor);
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "Cursor Count:: "+cursor.getCount());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "---------------------------------------");
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "id :: "+news.getId());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "title :: "+news.getTitle());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "desc :: "+news.getDescription());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "image :: "+news.getImage());
+                        return news;
+                    }
+                });
     }
 
     public Observable<Offer> setOffers(final Collection<Offer> offers){

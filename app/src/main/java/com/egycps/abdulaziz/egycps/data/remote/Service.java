@@ -1,5 +1,7 @@
 package com.egycps.abdulaziz.egycps.data.remote;
 
+import com.egycps.abdulaziz.egycps.data.model.Magazine;
+import com.egycps.abdulaziz.egycps.data.model.News;
 import com.egycps.abdulaziz.egycps.data.model.Offer;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.utils.GeneralJsonDeserializer;
@@ -36,15 +38,25 @@ public interface Service {
     @GET("feed/offerCat.json")
     Observable<ArrayList<Offer>> getOffers(@Query("cat_id") String cat_id);
 
+    @GET("feed/magazines.json")
+    Observable<ArrayList<Magazine>> getMagazines();
+
+    @GET("feed/allnews.json")
+    Observable<ArrayList<News>> getNews();
+
     /******** Helper class that sets up a new services *******/
     class Creator{
         public static Service getService(){
             Type offerCategoriesListType = new TypeToken<ArrayList<OffersCategory>>(){}.getType();
             Type offersListType = new TypeToken<ArrayList<Offer>>(){}.getType();
+            Type newsListType = new TypeToken<ArrayList<News>>(){}.getType();
+            Type magazinesListType = new TypeToken<ArrayList<Magazine>>(){}.getType();
 
             Gson gson = new GsonBuilder()
                         .registerTypeAdapter(offerCategoriesListType, new GeneralJsonDeserializer<ArrayList<OffersCategory>>())
                         .registerTypeAdapter(offersListType, new GeneralJsonDeserializer<ArrayList<Offer>>())
+                        .registerTypeAdapter(newsListType, new GeneralJsonDeserializer<ArrayList<News>>())
+                        .registerTypeAdapter(magazinesListType, new GeneralJsonDeserializer<ArrayList<Magazine>>())
                         .create();
 
             Retrofit retrofit = new Retrofit.Builder()

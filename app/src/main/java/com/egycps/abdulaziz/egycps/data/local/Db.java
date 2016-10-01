@@ -3,6 +3,8 @@ package com.egycps.abdulaziz.egycps.data.local;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import com.egycps.abdulaziz.egycps.data.model.Magazine;
+import com.egycps.abdulaziz.egycps.data.model.News;
 import com.egycps.abdulaziz.egycps.data.model.Offer;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 
@@ -12,6 +14,88 @@ import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 public class Db {
 
     public Db() {}
+
+    public abstract static class MagazinesTable{
+        public static final String TABLE_NAME = "magazines";
+
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_TITLE = "title";
+        public static final String COLUMN_IMAGE = "image";
+        public static final String COLUMN_PDF = "pdf";
+
+        public static final String CREATE =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_ID + " TEXT PRIMARY KEY, " +
+                        COLUMN_TITLE + " TEXT NOT NULL, " +
+                        COLUMN_IMAGE + " TEXT NOT NULL, " +
+                        COLUMN_PDF + " TEXT NOT NULL " +
+                ");";
+
+        public static final String DROP = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
+
+        public static ContentValues toContentValues(Magazine magazine){
+            ContentValues values = new ContentValues();
+
+            values.put(COLUMN_ID, magazine.getId());
+            values.put(COLUMN_TITLE, magazine.getTitle());
+            values.put(COLUMN_IMAGE, magazine.getImage());
+            values.put(COLUMN_PDF, magazine.getPdf());
+
+            return values;
+        }
+
+        public static Magazine parseCursor(Cursor cursor){
+            Magazine magazine = new Magazine(
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IMAGE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PDF))
+                    );
+
+            return magazine;
+        }
+    }
+
+    public abstract static class NewsTable{
+        public static final String TABLE_NAME = "news";
+
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_TITLE = "title";
+        public static final String COLUMN_DESC = "desc";
+        public static final String COLUMN_IMAGE = "image";
+
+        public static final String CREATE =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_ID + " TEXT PRIMARY KEY, " +
+                        COLUMN_TITLE + " TEXT NOT NULL, " +
+                        COLUMN_DESC + " TEXT NOT NULL, " +
+                        COLUMN_IMAGE + " TEXT NOT NULL " +
+                ");";
+
+        public static final String DROP = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
+
+        public static ContentValues toContentValues(News news){
+            ContentValues values = new ContentValues();
+
+            values.put(COLUMN_ID, news.getId());
+            values.put(COLUMN_TITLE, news.getTitle());
+            values.put(COLUMN_DESC, news.getDescription());
+            values.put(COLUMN_IMAGE, news.getImage());
+
+            return values;
+        }
+
+        public static News parseCursor(Cursor cursor){
+            News news = new News(
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESC)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IMAGE))
+            );
+
+            return news;
+        }
+    }
 
     public abstract static class OffersTable{
         public static final String TABLE_NAME = "offers";

@@ -44,7 +44,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".ui.magazine.Magazine"
+            android:name=".ui.magazine.MagazineActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity
@@ -52,7 +52,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".ui.news.News"
+            android:name=".ui.news.NewsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity

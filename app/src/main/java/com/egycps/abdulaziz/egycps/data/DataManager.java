@@ -6,6 +6,8 @@ import android.util.Log;
 
 import com.egycps.abdulaziz.egycps.data.local.DatabaseHelper;
 import com.egycps.abdulaziz.egycps.data.local.PreferencesHelper;
+import com.egycps.abdulaziz.egycps.data.model.Magazine;
+import com.egycps.abdulaziz.egycps.data.model.News;
 import com.egycps.abdulaziz.egycps.data.model.Offer;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.data.remote.Service;
@@ -59,6 +61,40 @@ public class DataManager {
         return mPreferencesHelper;
     }
 
+    public Observable<ArrayList<Magazine>> syncMagazines(){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncMagazines");
+        return mService.getMagazines().asObservable();
+    }
+
+    public Observable<List<Magazine>> getMagazines(){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: getMagazines");
+        return mDatabaseHelper.getMagazines();
+    }
+
+    public Observable<Magazine> setMagazines(List<Magazine> magazines){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: setMagazines");
+        return mDatabaseHelper.setMagazines(magazines);
+    }
+
+    public Observable<ArrayList<News>> syncNews(){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncNews");
+        return mService.getNews().asObservable();
+    }
+
+    public Observable<List<News>> getNews(){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: getNews");
+//        Observable<List<News>> newsObservable = new Observable<List<News>>();
+//        if(mDatabaseHelper!=null)
+//            newsObservable = mDatabaseHelper.getNews().take(20);
+//        return newsObservable;
+        return mDatabaseHelper.getNews();
+    }
+
+    public Observable<News> setNews(List<News> news){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: setNews");
+        return mDatabaseHelper.setNews(news);
+    }
+
     public Observable<ArrayList<Offer>> syncOffers(String cat_id){
         Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncOffers");
         return mService.getOffers(cat_id).asObservable();
@@ -70,7 +106,7 @@ public class DataManager {
     }
 
     public Observable<Offer> setOffers(List<Offer> offers){
-        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: setOffer");
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: setOffers");
         return mDatabaseHelper.setOffers(offers);
     }
 
