@@ -40,7 +40,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".ui.contact_us.Contacts"
+            android:name=".ui.contact_us.ContactUs"
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity

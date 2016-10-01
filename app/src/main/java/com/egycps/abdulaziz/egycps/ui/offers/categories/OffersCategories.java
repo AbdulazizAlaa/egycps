@@ -77,13 +77,6 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
         categoriesRecyclerView = (RecyclerView) findViewById(R.id.offers_categories_cat_recycler_view);
 
         categoriesList = new ArrayList<OffersCategory>();
-//        categoriesList.add(new OffersCategory("1", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
-//        categoriesList.add(new OffersCategory("2", "Gym", "image", "hiiiiiiiiiiiiiiii"));
-//        categoriesList.add(new OffersCategory("3", "Hospitals", "image", "hiiiiiiiiiiiiiiii"));
-//        categoriesList.add(new OffersCategory("4", "Cars", "image", "hiiiiiiiiiiiiiiii"));
-//        categoriesList.add(new OffersCategory("5", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
-//        categoriesList.add(new OffersCategory("6", "Hotels", "image", "hiiiiiiiiiiiiiiii"));
-
         categoriesLayoutManager = new GridLayoutManager(this, 2);
         categoriesRecyclerView.setLayoutManager(categoriesLayoutManager);
 
