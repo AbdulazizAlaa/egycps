@@ -3,7 +3,9 @@ package com.egycps.abdulaziz.egycps.ui.offers.categories;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -32,7 +34,7 @@ import java.util.List;
 import rx.Subscriber;
 import rx.functions.Action1;
 
-public class OffersCategories extends AppCompatActivity implements OffersCategoriesBaseView, View.OnClickListener{
+public class OffersCategories extends AppCompatActivity implements OffersCategoriesBaseView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener{
 
     Toolbar toolbar;
     TextView activityTitle;
@@ -45,6 +47,8 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     ArrayList<OffersCategory> categoriesList;
 
     OffersCategoriesPresenter mOffersCategoriesPresenter;
+
+    SwipeRefreshLayout offersCategoriesRefreshL;
 
     public static Intent getStartIntent(Context context){
         Intent i = new Intent(context, OffersCategories.class);
@@ -62,12 +66,14 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
         init();
     }
 
-
     private void init(){
         //initializing the toolbar
         toolbar = (Toolbar) findViewById(R.id.offers_categories_toolbar);
         homeBtn = (LinearLayout) toolbar.findViewById(R.id.offers_categories_home_btn);
         activityTitle = (TextView) findViewById(R.id.offers_categories_title_tv);
+        offersCategoriesRefreshL = (SwipeRefreshLayout) findViewById(R.id.offers_categories_refresh_l);
+
+        offersCategoriesRefreshL.setOnRefreshListener(this);
 
         activityTitle.setText("Offers Categories");
 
@@ -96,11 +102,17 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
                             }
                         });
 
-
-
         //presenter
         mOffersCategoriesPresenter = new OffersCategoriesPresenter(this, DataManager.getInstance(this, null, null, null));
         mOffersCategoriesPresenter.attachView(this);
+
+        offersCategoriesRefreshL.post(new Runnable() {
+            @Override
+            public void run() {
+                offersCategoriesRefreshL.setRefreshing(true);
+            }
+        });
+
         mOffersCategoriesPresenter.loadOffersCategories();
         mOffersCategoriesPresenter.syncOffersCategories();
 
@@ -117,16 +129,23 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     }
 
     @Override
+    public void saveOffersCategoriesCompleted() {
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "saveCompleted");
+
+        mOffersCategoriesPresenter.loadOffersCategories();
+    }
+
+    @Override
     public void syncOffersCategoriesCompleted() {
         Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncCompleted");
-//        mOffersCategoriesPresenter.loadOffersCategories();
+
     }
 
     @Override
     public void syncOffersCategories(ArrayList<OffersCategory> categories) {
         Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories");
+
         mOffersCategoriesPresenter.saveOffersCategories(categories);
-        mOffersCategoriesPresenter.loadOffersCategories();
     }
 
     @Override
@@ -139,20 +158,39 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     public void showOffersCategories(List<OffersCategory> categories) {
         Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showOffersCategories"+categories.size());
         Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showOffersCategories"+categoriesList.size());
+
         categoriesList.clear();
         categoriesList.addAll(categories);
         categoriesAdapter.notifyDataSetChanged();
+
+        offersCategoriesRefreshL.setRefreshing(false);
     }
 
     @Override
     public void showOffersCategoriesEmpty() {
         Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showOffersCategoriesEmpty");
-        //TODO: add an empty view and snack bar indicting the error
+        //refresh loader
+        offersCategoriesRefreshL.setRefreshing(false);
+
+        Snackbar.make(toolbar, "No Categories Could be Showed!!", Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void showOffersCategoriesError(Throwable e) {
         Log.e(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showError :: " + e.getMessage());
-        //TODO: add an empty view and snack bar indicting the error
+        //refresh loader
+        offersCategoriesRefreshL.setRefreshing(false);
+        Snackbar.make(toolbar, e.getMessage(), Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onRefresh() {
+        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "on refresh");
+        //refresh loader
+        offersCategoriesRefreshL.setRefreshing(true);
+
+        categoriesList.clear();
+        categoriesAdapter.notifyDataSetChanged();
+        mOffersCategoriesPresenter.syncOffersCategories();
     }
 }

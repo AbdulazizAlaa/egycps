@@ -52,41 +52,10 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
         if(mSubscription!=null) mSubscription.unsubscribe();
     }
 
-    public void syncImage(String path){
-        Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "syncImage");
-//        checkViewAttached();
-//        RxUtil.unsubscribe(mSubscription);
-//        mSubscription =
-//                mDataManager.syncImage(path)
-//                        .observeOn(AndroidSchedulers.mainThread())
-//                        .subscribeOn(Schedulers.newThread())
-//                        .subscribe(new Subscriber<Bitmap>() {
-//                            @Override
-//                            public void onCompleted() {
-//                                Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "syncImage: completed");
-//                                getBaseView().syncImageCompleted();
-//                            }
-//
-//                            @Override
-//                            public void onError(Throwable e) {
-//                                Log.e(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "syncImage: error :: " + e.getMessage());
-//                                getBaseView().syncImageError(e);
-//                            }
-//
-//                            @Override
-//                            public void onNext(Bitmap bitmap) {
-//                                Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "syncImage: item ");
-//                                getBaseView().syncImage(bitmap);
-//                            }
-//                        });
-    }
-
     public void saveOffersCategories(ArrayList<OffersCategory> categories){
         Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "setOffersCategories");
-//        ArrayList<OffersCategory> list = new ArrayList<OffersCategory>();
-//        list.add(category);
         checkViewAttached();
-        RxUtil.unsubscribe(mSubscription);
+//        RxUtil.unsubscribe(mSubscription);
         mSubscription = mDataManager.setOffersCategories(categories)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -94,7 +63,7 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
                     @Override
                     public void onCompleted() {
                         Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "setOffersCategories: completed");
-
+                        getBaseView().saveOffersCategoriesCompleted();
                     }
 
                     @Override
@@ -115,24 +84,11 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
     public void syncOffersCategories(){
         Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "syncOffersCategories");
         checkViewAttached();
-        RxUtil.unsubscribe(mSubscription);
+//        RxUtil.unsubscribe(mSubscription);
+        //TODO: not using the concept of chaining well needs more thinking
         mSubscription = mDataManager.syncOffersCategories()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-//                .filter(new Func1<OffersCategory, Boolean>() {
-//                    @Override
-//                    public Boolean call(OffersCategory category) {
-//                        String image_name = category.getImage();
-//                        Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories: image:: "+image_name);
-//                        if(Utils.isImageExistInStorage(mContext, image_name)){
-//                            Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories: image:: exist");
-//                            return true;
-//                        }else{
-//                            Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories: image:: does not exist");
-//                            return false;
-//                        }
-//                    }
-//                })
                 .map(new Func1<ArrayList<OffersCategory>, ArrayList<OffersCategory>>() {
                     @Override
                     public ArrayList<OffersCategory> call(ArrayList<OffersCategory> categories) {
@@ -140,11 +96,10 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
                             final String path = category.getImage();
                             String[] names = path.split("/");
                             final String image_name = "/"+names[names.length-1];
-                            Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories: image:: "+image_name);
                             if(Utils.isImageExistInStorage(mContext, image_name)){
-                                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories: image:: exist");
+                                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories: image: "+image_name+" :: exist");
                             }else{
-                                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories: image:: does not exist");
+                                Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories: image: "+image_name+" :: does not exist");
                                 Thread thread = new Thread(new Runnable() {
                                     @Override
                                     public void run() {
@@ -159,7 +114,6 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
                                 });
 
                                 thread.start();
-
                             }
 
                         }
@@ -202,37 +156,12 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
 //                        getBaseView().syncOffersCategories(response);
 //                    }
                 });
-//                .subscribe(new Subscriber<OffersCategory>() {
-//                    @Override
-//                    public final void onCompleted() {
-//                        // do nothing
-//                        Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "syncOffersCategories: completed");
-//                        getBaseView().syncOffersCategoriesCompleted();
-//                    }
-//
-//                    @Override
-//                    public final void onError(Throwable e) {
-//                        Log.e(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "syncOffersCategories: error :: "+e.getMessage());
-//                        getBaseView().syncOffersCategoriesError(e);
-//                    }
-//
-//                    @Override
-//                    public final void onNext(OffersCategory response) {
-//                        Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "syncOffersCategories: onNext");
-//                        Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "---------------------------------------");
-//                        Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "id :: "+response.getId());
-//                        Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "title :: "+response.getTitle());
-//                        Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "desc :: "+response.getDescription());
-//                        Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "image :: "+response.getImage());
-//                        getBaseView().syncOffersCategories(response);
-//                    }
-//                });
     }
 
     public void loadOffersCategories(){
         Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "loadOffersCategories");
         checkViewAttached();
-        RxUtil.unsubscribe(mSubscription);
+//        RxUtil.unsubscribe(mSubscription);
         mSubscription = mDataManager.getOffersCategories()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())

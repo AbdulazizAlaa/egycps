@@ -13,6 +13,8 @@ import java.util.List;
  */
 public interface OffersCategoriesBaseView extends BaseView{
 
+    void saveOffersCategoriesCompleted();
+
     void syncOffersCategoriesCompleted();
 
     void syncOffersCategories(ArrayList<OffersCategory> category);
