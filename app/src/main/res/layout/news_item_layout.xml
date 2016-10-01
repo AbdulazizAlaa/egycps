@@ -21,10 +21,10 @@
             <ImageView
                 android:id="@+id/news_item_image_iv"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="2"
                 android:padding="5dp"
-                android:src="@drawable/hotels"
+                android:src="@drawable/holder"
                 android:scaleType="fitXY"/>
             <LinearLayout
                 android:layout_width="match_parent"

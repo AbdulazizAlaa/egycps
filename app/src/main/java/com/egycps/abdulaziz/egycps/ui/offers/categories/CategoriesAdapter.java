@@ -79,6 +79,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         Bitmap image = Utils.loadImageFromStorage(mContext, image_filename);
         if(image != null){
             holder.categoryIV.setImageBitmap(image);
+        }else{
+            holder.categoryIV.setImageResource(R.drawable.holder);
         }
     }
 

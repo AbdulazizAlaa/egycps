@@ -18,7 +18,7 @@
             android:id="@+id/category_item_cat_image_iv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/hotels"
+            android:src="@drawable/holder"
             android:scaleType="fitXY"/>
         <LinearLayout
             android:layout_width="match_parent"

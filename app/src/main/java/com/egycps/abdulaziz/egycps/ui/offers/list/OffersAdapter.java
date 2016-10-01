@@ -83,7 +83,7 @@ public class OffersAdapter extends RecyclerView.Adapter<OffersAdapter.ViewHolder
 
         String image_path = GlobalEntities.ENDPOINT+offer.getImage();
         image_path = image_path.replace(" ", "%20");
-        Picasso.with(mContext).load(image_path).into(holder.offerIV);
+        Picasso.with(mContext).load(image_path).error(R.drawable.holder).placeholder(R.drawable.holder).into(holder.offerIV);
     }
 
     @Override
