@@ -7,6 +7,7 @@ public class GlobalEntities {
 
     //server url
     public final static String ENDPOINT = "http://www.egycps.org/public/";
+    public final static String MEMBERS_ENDPOINT = "http://www.egycps.org/public/members/login";
 
     //bus classes
     public final static String DATA_MANAGER_TAG = "data_manager";
