@@ -52,6 +52,7 @@
                         android:gravity="center_horizontal"
                         android:background="@drawable/menu_item_background_selector"
                         android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                        android:paddingTop="@dimen/menu_item_layout_top_padding"
                         android:layout_margin="@dimen/menu_item_layout_margin"
                         android:orientation="vertical">
                         <ImageView
@@ -59,7 +60,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="2"
                             android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
-                            android:src="@drawable/news"/>
+                            android:src="@drawable/news_icon"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -100,6 +101,7 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:layout_gravity="center"
+                                    android:paddingBottom="@dimen/menu_item_notification_bottom_padding"
                                     android:text="20"
                                     android:textColor="@android:color/white"
                                     android:textSize="10sp"/>
@@ -130,6 +132,7 @@
                         android:gravity="center_horizontal"
                         android:background="@drawable/menu_item_background_selector"
                         android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                        android:paddingTop="@dimen/menu_item_layout_top_padding"
                         android:layout_margin="@dimen/menu_item_layout_margin"
                         android:orientation="vertical">
                         <ImageView
@@ -137,7 +140,7 @@
                             android:layout_height="match_parent"
                             android:layout_weight="2"
                             android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
-                            android:src="@drawable/offers"/>
+                            android:src="@drawable/offers_icon"/>
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -178,6 +181,7 @@
                                     android:layout_height="match_parent"
                                     android:gravity="center"
                                     android:layout_gravity="center"
+                                    android:paddingBottom="@dimen/menu_item_notification_bottom_padding"
                                     android:text="20"
                                     android:textColor="@android:color/white"
                                     android:textSize="10sp"/>
@@ -276,6 +280,7 @@
                     android:gravity="center_horizontal"
                     android:background="@drawable/menu_item_background_selector"
                     android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                    android:paddingTop="@dimen/menu_item_layout_top_padding"
                     android:layout_margin="@dimen/menu_item_layout_margin"
                     android:orientation="vertical">
                     <ImageView
@@ -283,7 +288,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
-                        android:src="@drawable/library"/>
+                        android:src="@drawable/library_icon"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -304,6 +309,7 @@
                     android:gravity="center_horizontal"
                     android:background="@drawable/menu_item_background_selector"
                     android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                    android:paddingTop="@dimen/menu_item_layout_top_padding"
                     android:layout_margin="@dimen/menu_item_layout_margin"
                     android:orientation="vertical">
                     <ImageView
@@ -311,7 +317,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
-                        android:src="@drawable/magazine"/>
+                        android:src="@drawable/magazine_icon"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -342,6 +348,7 @@
                     android:gravity="center_horizontal"
                     android:background="@drawable/menu_item_background_selector"
                     android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                    android:paddingTop="@dimen/menu_item_layout_top_padding"
                     android:layout_margin="@dimen/menu_item_layout_margin"
                     android:orientation="vertical">
                     <ImageView
@@ -349,7 +356,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
-                        android:src="@drawable/members"/>
+                        android:src="@drawable/members_icon"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -370,6 +377,7 @@
                     android:gravity="center_horizontal"
                     android:background="@drawable/menu_item_background_selector"
                     android:paddingBottom="@dimen/menu_item_layout_bottom_padding"
+                    android:paddingTop="@dimen/menu_item_layout_top_padding"
                     android:layout_margin="@dimen/menu_item_layout_margin"
                     android:orientation="vertical">
                     <ImageView
@@ -377,7 +385,7 @@
                         android:layout_height="match_parent"
                         android:layout_weight="2"
                         android:layout_marginBottom="@dimen/menu_item_image_bottom_margin"
-                        android:src="@drawable/contacts"/>
+                        android:src="@drawable/contacts_icon"/>
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

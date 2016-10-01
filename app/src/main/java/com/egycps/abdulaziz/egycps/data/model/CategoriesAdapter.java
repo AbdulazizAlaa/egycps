@@ -3,6 +3,7 @@ package com.egycps.abdulaziz.egycps.data.model;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.ui.offers.categories.OffersCategories;
+import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 import com.egycps.abdulaziz.egycps.utils.Utils;
 
 import java.util.ArrayList;
@@ -73,11 +75,13 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
         String[] names = cat.getImage().split("/");
         String image_filename = names[names.length-1];
+
+//        Log.i(GlobalEntities.OFFERS_CATEGORIES_ADAPTER_TAG, "onBindViewHolder: image path: "+GlobalEntities.APP_DIR_TAG+image_filename);
+
         Bitmap image = Utils.loadImageFromStorage(mContext, image_filename);
         if(image != null){
             holder.categoryIV.setImageBitmap(image);
         }
-        //TODO: get image url and load image to view
     }
 
     @Override

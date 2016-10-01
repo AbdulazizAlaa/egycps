@@ -28,6 +28,7 @@ public class GlobalEntities {
     public final static String HOME_ACTIVITY_TAG = "home_activity";
     public final static String OFFERS_CATEGORIES_PRESENTER_TAG = "offers_cat_presenter";
     public final static String OFFERS_CATEGORIES_ACTIVITY_TAG = "offers_cat_activity";
+    public final static String OFFERS_CATEGORIES_ADAPTER_TAG = "offers_cat_adapter";
     public final static String OFFERS_LIST_PRESENTER_TAG = "offers_list_presenter";
     public final static String OFFERS_LIST_ACTIVITY_TAG = "offers_list_activity";
     public final static String NEWS_PRESENTER_TAG = "news_presenter";

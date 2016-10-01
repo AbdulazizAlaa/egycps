@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/views_bg">
+    android:background="@drawable/bg_solid">
 
 
     <!-- toolbar -->
@@ -24,7 +24,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@drawable/main_logo"
+                android:src="@drawable/transparent_logo"
                 android:layout_weight="1"
                 android:paddingBottom="8dp"
                 android:paddingTop="10dp"/>

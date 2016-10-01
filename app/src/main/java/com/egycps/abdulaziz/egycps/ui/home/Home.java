@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
-import com.egycps.abdulaziz.egycps.ui.contacts.Contacts;
+import com.egycps.abdulaziz.egycps.ui.contact_us.ContactUs;
 import com.egycps.abdulaziz.egycps.ui.library.Library;
 import com.egycps.abdulaziz.egycps.ui.magazine.Magazine;
 import com.egycps.abdulaziz.egycps.ui.members.Members;
@@ -100,7 +100,7 @@ public class Home extends Activity implements View.OnClickListener{
 
             case R.id.home_menu_contacts_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: contacts");
-                startActivity(Contacts.getStartIntent(this));
+                startActivity(ContactUs.getStartIntent(this));
                 break;
         }
     }
