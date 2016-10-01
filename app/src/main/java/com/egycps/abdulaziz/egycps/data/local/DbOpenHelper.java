@@ -17,7 +17,7 @@ public class DbOpenHelper extends SQLiteOpenHelper{
     private static DbOpenHelper dbOpenHelper;
 
     public static final String DATABASE_NAME = "egycps.db";
-    public static final int DATABASE_VERSION = 3;
+    public static final int DATABASE_VERSION = 4;
 
     private DbOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -47,6 +47,7 @@ public class DbOpenHelper extends SQLiteOpenHelper{
         db.beginTransaction();
         try {
             db.execSQL(Db.OffersCategoriesTable.CREATE);
+            db.execSQL(Db.OffersTable.CREATE);
 
             db.setTransactionSuccessful();
         }finally {
@@ -60,8 +61,10 @@ public class DbOpenHelper extends SQLiteOpenHelper{
         db.beginTransaction();
         try {
             db.execSQL(Db.OffersCategoriesTable.DROP);
+            db.execSQL(Db.OffersTable.DROP);
 
             db.execSQL(Db.OffersCategoriesTable.CREATE);
+            db.execSQL(Db.OffersTable.CREATE);
 
             db.setTransactionSuccessful();
         }finally {

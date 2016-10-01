@@ -2,9 +2,7 @@ package com.egycps.abdulaziz.egycps.ui.offers.categories;
 
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.support.design.widget.Snackbar;
-import android.support.v4.app.NavUtils;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,26 +10,19 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.data.DataManager;
-import com.egycps.abdulaziz.egycps.data.model.CategoriesAdapter;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
-import com.egycps.abdulaziz.egycps.ui.home.Home;
 import com.egycps.abdulaziz.egycps.ui.offers.list.OffersList;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
-import com.egycps.abdulaziz.egycps.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Subscriber;
 import rx.functions.Action1;
 
 public class OffersCategories extends AppCompatActivity implements OffersCategoriesBaseView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener{

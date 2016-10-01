@@ -6,18 +6,18 @@ package com.egycps.abdulaziz.egycps.data.model;
 public class Offer {
 
     private String id;
-    private String title;
-    private String desc;
-    private String info;
-    private String category_id;
+    private String name;
+    private String description;
+    private String information;
+    private String category_offer_id;
     private String image;
 
-    public Offer(String id, String title, String desc, String info, String category_id, String image) {
+    public Offer(String id, String name, String description, String information, String category_offer_id, String image) {
         this.id = id;
-        this.title = title;
-        this.desc = desc;
-        this.info = info;
-        this.category_id = category_id;
+        this.name = name;
+        this.description = description;
+        this.information = information;
+        this.category_offer_id = category_offer_id;
         this.image = image;
     }
 
@@ -29,36 +29,36 @@ public class Offer {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
+    public String getName() {
+        return name;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    public String getInfo() {
-        return info;
+    public String getInformation() {
+        return information;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
+    public void setInformation(String information) {
+        this.information = information;
     }
 
-    public String getCategory_id() {
-        return category_id;
+    public String getCategory_offer_id() {
+        return category_offer_id;
     }
 
-    public void setCategory_id(String category_id) {
-        this.category_id = category_id;
+    public void setCategory_offer_id(String category_offer_id) {
+        this.category_offer_id = category_offer_id;
     }
 
     public String getImage() {

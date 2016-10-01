@@ -13,12 +13,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
-import com.egycps.abdulaziz.egycps.data.DataManager;
-import com.egycps.abdulaziz.egycps.data.model.CategoriesAdapter;
+import com.egycps.abdulaziz.egycps.ui.offers.categories.CategoriesAdapter;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.ui.library.list.LibraryList;
-import com.egycps.abdulaziz.egycps.ui.offers.categories.OffersCategoriesPresenter;
-import com.egycps.abdulaziz.egycps.ui.offers.list.OffersList;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
 import java.util.ArrayList;

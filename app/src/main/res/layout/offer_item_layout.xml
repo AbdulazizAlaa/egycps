@@ -47,6 +47,7 @@
                     android:ellipsize="marquee"
                     android:textColor="@color/offer_item_text_title_color"
                     android:textStyle="bold"/>
+
                 <TextView
                     android:id="@+id/offer_item_content_tv"
                     android:layout_width="wrap_content"

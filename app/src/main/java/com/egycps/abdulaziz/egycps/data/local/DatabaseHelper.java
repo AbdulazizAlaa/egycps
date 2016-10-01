@@ -4,6 +4,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.egycps.abdulaziz.egycps.data.model.Offer;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 import com.squareup.sqlbrite.BriteDatabase;
@@ -51,6 +52,53 @@ public class DatabaseHelper {
         return mDB;
     }
 
+    public Observable<Offer> setOffers(final Collection<Offer> offers){
+        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setOffers: "+offers.size());
+        return Observable.create(new Observable.OnSubscribe<Offer>() {
+            @Override
+            public void call(Subscriber<? super Offer> subscriber) {
+                if(subscriber.isUnsubscribed()) return;
+                BriteDatabase.Transaction transaction = mDB.newTransaction();
+                try {
+//                    mDB.delete(Db.OffersTable.TABLE_NAME, null);
+                    for(Offer offer : offers){
+                        long result = mDB.insert(Db.OffersTable.TABLE_NAME,
+                                Db.OffersTable.toContentValues(offer),
+                                SQLiteDatabase.CONFLICT_REPLACE);
+                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setOffers: offer: "+offer.getName()+" result: "+result);
+
+                        if(result >= 0) subscriber.onNext(offer);
+                    }
+                    transaction.markSuccessful();
+                    subscriber.onCompleted();
+                }finally {
+                    transaction.end();
+                }
+            }
+        });
+
+    }
+
+    public Observable<List<Offer>> getOffers(String cat_id){
+        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: getOffers");
+        return mDB.createQuery(Db.OffersTable.TABLE_NAME,
+                "SELECT * FROM " + Db.OffersTable.TABLE_NAME +
+                " WHERE " + Db.OffersTable.COLUMN_CAT_ID + " = '" + cat_id + "'")
+                .mapToList(new Func1<Cursor, Offer>() {
+                    @Override
+                    public Offer call(Cursor cursor) {
+                        Offer offer = Db.OffersTable.parseCursor(cursor);
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "Cursor Count:: "+cursor.getCount());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "---------------------------------------");
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "id :: "+offer.getId());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "title :: "+offer.getTitle());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "desc :: "+offer.getDesc());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "image :: "+offer.getImage());
+                        return offer;
+                    }
+                });
+    }
+
     public Observable<OffersCategory> setOffersCategories(final Collection<OffersCategory> categories){
         Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setOffersCategories: "+categories.size());
         return Observable.create(new Observable.OnSubscribe<OffersCategory>() {
@@ -59,7 +107,7 @@ public class DatabaseHelper {
                 if(subscriber.isUnsubscribed()) return;
                 BriteDatabase.Transaction transaction = mDB.newTransaction();
                 try {
-//                    mDB.delete(Db.OffersCategoriesTable.TABLE_NAME, null);
+                    mDB.delete(Db.OffersCategoriesTable.TABLE_NAME, null);
                     for(OffersCategory category : categories){
                         long result = mDB.insert(Db.OffersCategoriesTable.TABLE_NAME,
                                     Db.OffersCategoriesTable.toContentValues(category),

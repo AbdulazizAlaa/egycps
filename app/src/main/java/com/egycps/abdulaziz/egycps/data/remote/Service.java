@@ -1,6 +1,8 @@
 package com.egycps.abdulaziz.egycps.data.remote;
 
+import com.egycps.abdulaziz.egycps.data.model.Offer;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
+import com.egycps.abdulaziz.egycps.utils.GeneralJsonDeserializer;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,6 +21,8 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
+import retrofit2.http.Path;
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -29,42 +33,26 @@ public interface Service {
     @GET("feed/offerallCat.json")
     Observable<ArrayList<OffersCategory>> getOfferCategories();
 
+    @GET("feed/offerCat.json")
+    Observable<ArrayList<Offer>> getOffers(@Query("cat_id") String cat_id);
+
     /******** Helper class that sets up a new services *******/
     class Creator{
         public static Service getService(){
             Type offerCategoriesListType = new TypeToken<ArrayList<OffersCategory>>(){}.getType();
+            Type offersListType = new TypeToken<ArrayList<Offer>>(){}.getType();
 
             Gson gson = new GsonBuilder()
-                        .registerTypeAdapter(offerCategoriesListType, new OfferCategoriesDeserializer<ArrayList<OffersCategory>>())
+                        .registerTypeAdapter(offerCategoriesListType, new GeneralJsonDeserializer<ArrayList<OffersCategory>>())
+                        .registerTypeAdapter(offersListType, new GeneralJsonDeserializer<ArrayList<Offer>>())
                         .create();
+
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(GlobalEntities.ENDPOINT)
                     .addConverterFactory(GsonConverterFactory.create(gson))
                     .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .build();
             return retrofit.create(Service.class);
-        }
-    }
-
-    class OfferCategoriesDeserializer<T> implements JsonDeserializer<T>
-    {
-        @Override
-        public T deserialize(JsonElement je, Type type, JsonDeserializationContext jdc)
-                throws JsonParseException
-        {
-
-            String objArray  = "[";
-
-            Set<Map.Entry<String, JsonElement>> entries = je.getAsJsonObject().entrySet();//will return members of your object
-            for (Map.Entry<String, JsonElement> entry: entries) {
-                //Log.i(GlobalEntities.SERVICE_TAG, "key: "+entry.getKey()+" obj: "+je.getAsJsonObject().get(entry.getKey()));
-                objArray += je.getAsJsonObject().get(entry.getKey()) + ",";
-            }
-            objArray = objArray.substring(0, objArray.length()-1)+"]";
-            //Log.i(GlobalEntities.SERVICE_TAG, "OfferCategories array: "+objArray);
-
-            return new Gson().fromJson(objArray, type);
-
         }
     }
 

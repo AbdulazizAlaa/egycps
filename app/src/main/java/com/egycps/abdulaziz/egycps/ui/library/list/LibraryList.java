@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.data.model.Offer;
-import com.egycps.abdulaziz.egycps.data.model.OffersAdapter;
+import com.egycps.abdulaziz.egycps.ui.offers.list.OffersAdapter;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
 import java.util.ArrayList;
@@ -86,14 +86,14 @@ public class LibraryList extends AppCompatActivity implements View.OnClickListen
         libraryRecyclerView.setLayoutManager(libraryLayoutManager);
 
         final Context context = this;
-        libraryAdapter = new OffersAdapter(libraryList);
+        libraryAdapter = new OffersAdapter(this, libraryList);
         libraryRecyclerView.setAdapter(libraryAdapter);
         libraryAdapter.getPositionClicks()
                 .subscribe(new Action1<Offer>() {
                     @Override
                     public void call(Offer o) {
                         Log.i(GlobalEntities.LIBRARIES_LIST_ACTIVITY_TAG, "offer id:: "+o.getId());
-                        Log.i(GlobalEntities.LIBRARIES_LIST_ACTIVITY_TAG, "offer title:: "+o.getTitle());
+                        Log.i(GlobalEntities.LIBRARIES_LIST_ACTIVITY_TAG, "offer title:: "+o.getName());
                     }
                 });
 

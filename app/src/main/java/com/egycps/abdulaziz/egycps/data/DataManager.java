@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.egycps.abdulaziz.egycps.data.local.DatabaseHelper;
 import com.egycps.abdulaziz.egycps.data.local.PreferencesHelper;
+import com.egycps.abdulaziz.egycps.data.model.Offer;
 import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.data.remote.Service;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
@@ -58,15 +59,24 @@ public class DataManager {
         return mPreferencesHelper;
     }
 
+    public Observable<ArrayList<Offer>> syncOffers(String cat_id){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncOffers");
+        return mService.getOffers(cat_id).asObservable();
+    }
+
+    public Observable<List<Offer>> getOffers(String cat_id){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: getOffers");
+        return mDatabaseHelper.getOffers(cat_id);
+    }
+
+    public Observable<Offer> setOffers(List<Offer> offers){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: setOffer");
+        return mDatabaseHelper.setOffers(offers);
+    }
+
     public Observable<ArrayList<OffersCategory>> syncOffersCategories(){
         Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncOffersCategories");
         return mService.getOfferCategories().asObservable();
-//                .flatMap(new Func1<ArrayList<OffersCategory>, Observable<OffersCategory>>() {
-//                    @Override
-//                    public Observable<OffersCategory> call(ArrayList<OffersCategory> offerCategories) {
-//                        return Observable.from(offerCategories);
-//                    }
-//                });
     }
 
     public Observable<List<OffersCategory>> getOffersCategories(){
