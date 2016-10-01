@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ public class Members extends AppCompatActivity implements View.OnClickListener{
     TextView activityTitle;
     LinearLayout homeBtn;
 
+    WebView membersWV;
+
     public static Intent getStartIntent(Context context){
         Intent i = new Intent(context, Members.class);
 
@@ -29,7 +32,7 @@ public class Members extends AppCompatActivity implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_members);
-
+        
         init();
     }
 
@@ -39,10 +42,13 @@ public class Members extends AppCompatActivity implements View.OnClickListener{
         toolbar = (Toolbar) findViewById(R.id.members_toolbar);
         homeBtn = (LinearLayout) toolbar.findViewById(R.id.members_home_btn);
         activityTitle = (TextView) findViewById(R.id.members_title_tv);
+        membersWV = (WebView) findViewById(R.id.members_web_view);
 
         activityTitle.setText("Members");
 
         homeBtn.setOnClickListener(this);
+
+        membersWV.loadUrl("http://www.egycps.org/public/members/login");
     }
 
     @Override

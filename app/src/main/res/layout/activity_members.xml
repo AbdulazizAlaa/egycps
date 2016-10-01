@@ -69,4 +69,12 @@
             android:layout_gravity="left"/>
     </LinearLayout>
 
+
+    <WebView
+        android:id="@+id/members_web_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </WebView>
+
 </LinearLayout>
