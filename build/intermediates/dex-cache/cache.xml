@@ -2,165 +2,179 @@
 <items version="2" >
 
     <item
-        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/okhttp-3.4.1_54428f4a6c0c448f712205880479902c62fc20c0.jar" />
-    </item>
-    <item
         jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="24.0.1"
         sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-23.4.0_4e16e827975ba89f405048b8ec75de7d42ec7054.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/retrofit-2.1.0_b279c938c04b395d7c02ebbb0f90379c4d56abba.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.squareup.sqlbrite/sqlbrite/0.7.0/jars/classes.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="9b36c53b72dd052370aea5229573d75b640ec015">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/com.squareup.sqlbrite-sqlbrite-0.7.0_3b0aa5c6b5dab0779d16bfdf9c1ccffaea7cdc6b.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="6975da39a7040257bd51d21a231b76c915872d38">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/javax.inject-1_154ff3325a01d13ea1e48ff175b233c92e565c5b.jar" />
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.4.0_4e16e827975ba89f405048b8ec75de7d42ec7054.jar" />
     </item>
     <item
         jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.5.2/7446d06ec8d4f7ffcc53f1da37c95f200dcb9387/picasso-2.5.2.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="24.0.1"
         sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/picasso-2.5.2_a56ed16c0433c4258cbbe6ccb23e793e92325dcd.jar" />
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/picasso-2.5.2_a56ed16c0433c4258cbbe6ccb23e793e92325dcd.jar" />
     </item>
     <item
         jar="/home/abdulaziz/android-sdks/extras/android/m2repository/com/android/support/support-annotations/24.0.0/support-annotations-24.0.0.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="24.0.1"
         sha1="2943c74db6d4346ab8c6531adac91fa05c137c40">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/support-annotations-24.0.0_372d8ea34e954ea11d5d9b735f05435709529d62.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/com.android.support-recyclerview-v7-23.4.0_0054b790e5b14a574861459d4d12207ac796ba93.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava/2.1.0/693eddc23e87ab13f9cf5001707ce8e7e1d1ff01/adapter-rxjava-2.1.0.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="693eddc23e87ab13f9cf5001707ce8e7e1d1ff01">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/adapter-rxjava-2.1.0_8d2bfd9eeddcf743f2e918097ce37e1ebd918173.jar" />
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/support-annotations-24.0.0_372d8ea34e954ea11d5d9b735f05435709529d62.jar" />
     </item>
     <item
         jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/converter-gson/2.1.0/aa557d71ead91cbf26e0c316a0f593d168303309/converter-gson-2.1.0.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="24.0.1"
         sha1="aa557d71ead91cbf26e0c316a0f593d168303309">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/converter-gson-2.1.0_fbe99678c62ba1372228d40c2fd0c44df75e8568.jar" />
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/converter-gson-2.1.0_fbe99678c62ba1372228d40c2fd0c44df75e8568.jar" />
     </item>
     <item
-        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
-        jumboMode="false"
+        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
         revision="24.0.1"
-        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/com.android.support-design-23.4.0_e2035c0ab3aff63f7d6fe59ad6f59afbd0e91332.jar" />
+        sha1="488017241676d12b472960b5ac3bf484b4002ee0">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/instant-run_be78a97f5ca834e870f6bcf77a1a088a42c3a745.jar" />
     </item>
     <item
-        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
-        jumboMode="false"
+        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
         revision="24.0.1"
-        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/gson-2.7_cbeac796230f0bed0350f4284146eabb698cd1f7.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.8/f9dbae366a6a3d6b5041c5e8db0dcdfdc35c27b5/rxjava-1.1.8.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="f9dbae366a6a3d6b5041c5e8db0dcdfdc35c27b5">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/rxjava-1.1.8_4b7fbd396ecd89c3470f7b98ccfeca69ee086474.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.3/5b0002c5fb66867ca919be0fbd86de1cfaf76da7/httpmime-4.3.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="5b0002c5fb66867ca919be0fbd86de1cfaf76da7">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/httpmime-4.3_51d948d4aeb79795ef9f65c54b07b4eb7c4b5362.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger/2.5/571f4e0451db64a7b41dbeb5f2503986fe5acdb4/dagger-2.5.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="571f4e0451db64a7b41dbeb5f2503986fe5acdb4">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/dagger-2.5_05a4adecb939dd05f8ea5e7295712ae7d8648f5b.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.1/f5aa318bda4c6c8d688c9d00b90681dcd82ce636/httpcore-4.4.1.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="f5aa318bda4c6c8d688c9d00b90681dcd82ce636">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/httpcore-4.4.1_8bdc84f75c58dfbaac47cfae9e7a25da3d631606.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/okio-1.9.0_2581b81e78aa1ee1bac26be4091610b4bbf5af49.jar" />
-    </item>
-    <item
-        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
-        jumboMode="false"
-        revision="24.0.1"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/com.android.support-appcompat-v7-23.4.0_24d16422ebe4989fcce9147ca4a41ac3fb3204b4.jar" />
+        sha1="c45db46d62412ffac522cb3708fabc71ee09c7f4">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_f29abc70567ea39074a9f847e018e25e00c4f0a2.jar" />
     </item>
     <item
         jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="24.0.1"
         sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/com.android.support-animated-vector-drawable-23.4.0_b4d775003dd1e9687030b5c5778c422eee2b67a5.jar" />
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.4.0_b4d775003dd1e9687030b5c5778c422eee2b67a5.jar" />
     </item>
     <item
-        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
-        jumboMode="false"
+        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.squareup.sqlbrite/sqlbrite/0.7.0/jars/classes.jar"
+        jumboMode="true"
         revision="24.0.1"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/internal_impl-23.4.0_e26be349e759b8875db4b1781bf6fed5956114d6.jar" />
+        sha1="9b36c53b72dd052370aea5229573d75b640ec015">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/com.squareup.sqlbrite-sqlbrite-0.7.0_3b0aa5c6b5dab0779d16bfdf9c1ccffaea7cdc6b.jar" />
     </item>
     <item
-        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.4.0/jars/classes.jar"
-        jumboMode="false"
+        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/retrofit/2.1.0/2de7cd8b95b7021b1d597f049bcb422055119f2c/retrofit-2.1.0.jar"
+        jumboMode="true"
         revision="24.0.1"
-        sha1="d9ecde39b460470e655de6e47c05573d2d5a8bfb">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/com.android.support-cardview-v7-23.4.0_4367f996c5be9a79e2650c4e523abae585ee85d6.jar" />
+        sha1="2de7cd8b95b7021b1d597f049bcb422055119f2c">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/retrofit-2.1.0_b279c938c04b395d7c02ebbb0f90379c4d56abba.jar" />
     </item>
     <item
-        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
-        jumboMode="false"
+        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.7/751f548c85fa49f330cecbb1875893f971b33c4e/gson-2.7.jar"
+        jumboMode="true"
         revision="24.0.1"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/com.android.support-support-vector-drawable-23.4.0_8b157bcf98ec03964de14c8fae0806e276243fc9.jar" />
+        sha1="751f548c85fa49f330cecbb1875893f971b33c4e">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/gson-2.7_cbeac796230f0bed0350f4284146eabb698cd1f7.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/io.reactivex/rxjava/1.1.8/f9dbae366a6a3d6b5041c5e8db0dcdfdc35c27b5/rxjava-1.1.8.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f9dbae366a6a3d6b5041c5e8db0dcdfdc35c27b5">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/rxjava-1.1.8_4b7fbd396ecd89c3470f7b98ccfeca69ee086474.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpcore/4.4.1/f5aa318bda4c6c8d688c9d00b90681dcd82ce636/httpcore-4.4.1.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f5aa318bda4c6c8d688c9d00b90681dcd82ce636">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/httpcore-4.4.1_8bdc84f75c58dfbaac47cfae9e7a25da3d631606.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/org.apache.httpcomponents/httpmime/4.3/5b0002c5fb66867ca919be0fbd86de1cfaf76da7/httpmime-4.3.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="5b0002c5fb66867ca919be0fbd86de1cfaf76da7">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/httpmime-4.3_51d948d4aeb79795ef9f65c54b07b4eb7c4b5362.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.google.dagger/dagger/2.5/571f4e0451db64a7b41dbeb5f2503986fe5acdb4/dagger-2.5.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="571f4e0451db64a7b41dbeb5f2503986fe5acdb4">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/dagger-2.5_05a4adecb939dd05f8ea5e7295712ae7d8648f5b.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.4.0_24d16422ebe4989fcce9147ca4a41ac3fb3204b4.jar" />
     </item>
     <item
         jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/io.reactivex/rxandroid/1.2.1/jars/classes.jar"
-        jumboMode="false"
+        jumboMode="true"
         revision="24.0.1"
         sha1="5a2386ad9bfff580b206a7fe305cdccd00798159">
-        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/release/io.reactivex-rxandroid-1.2.1_7974f71efe7459012626b0180f94232d8550ec8f.jar" />
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/io.reactivex-rxandroid-1.2.1_7974f71efe7459012626b0180f94232d8550ec8f.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.4.0_8b157bcf98ec03964de14c8fae0806e276243fc9.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/javax.inject-1_154ff3325a01d13ea1e48ff175b233c92e565c5b.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.4.0_0054b790e5b14a574861459d4d12207ac796ba93.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.4.0_e2035c0ab3aff63f7d6fe59ad6f59afbd0e91332.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.squareup.retrofit2/adapter-rxjava/2.1.0/693eddc23e87ab13f9cf5001707ce8e7e1d1ff01/adapter-rxjava-2.1.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="693eddc23e87ab13f9cf5001707ce8e7e1d1ff01">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/adapter-rxjava-2.1.0_8d2bfd9eeddcf743f2e918097ce37e1ebd918173.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.9.0/f824591a0016efbaeddb8300bee54832a1398cfa/okio-1.9.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="f824591a0016efbaeddb8300bee54832a1398cfa">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/okio-1.9.0_2581b81e78aa1ee1bac26be4091610b4bbf5af49.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="d9ecde39b460470e655de6e47c05573d2d5a8bfb">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-23.4.0_4367f996c5be9a79e2650c4e523abae585ee85d6.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/internal_impl-23.4.0_e26be349e759b8875db4b1781bf6fed5956114d6.jar" />
+    </item>
+    <item
+        jar="/home/abdulaziz/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.4.1/c7c4f9e35c2fd5900da24f9872e3971801f08ce0/okhttp-3.4.1.jar"
+        jumboMode="true"
+        revision="24.0.1"
+        sha1="c7c4f9e35c2fd5900da24f9872e3971801f08ce0">
+        <dex dex="/home/abdulaziz/workspace/Android/EGYCPS/app/build/intermediates/pre-dexed/debug/okhttp-3.4.1_54428f4a6c0c448f712205880479902c62fc20c0.jar" />
     </item>
 
 </items>
