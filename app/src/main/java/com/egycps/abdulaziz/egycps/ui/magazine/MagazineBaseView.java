@@ -14,13 +14,13 @@ public interface MagazineBaseView extends BaseView {
 
     void saveMagazinesError(Throwable e);
 
-    void syncMagazines(List<Magazine> offers);
+    void syncMagazines(List<Magazine> magazines);
 
     void syncMagazinesError(Throwable e);
 
     void syncMagazinesCompleted();
 
-    void showMagazines(List<Magazine> offers);
+    void showMagazines(List<Magazine> magazines);
 
     void showMagazinesError(Throwable e);
 

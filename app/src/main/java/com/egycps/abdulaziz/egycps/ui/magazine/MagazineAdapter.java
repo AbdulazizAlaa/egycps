@@ -33,13 +33,13 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        ImageView newsIV;
+        ImageView magazineIV;
         TextView titleTV;
         TextView descTV;
 
         public ViewHolder(View itemView, ImageView newsIV, TextView titleTV, TextView descTV) {
             super(itemView);
-            this.newsIV = newsIV;
+            this.magazineIV = newsIV;
             this.titleTV = titleTV;
             this.descTV = descTV;
         }
@@ -85,7 +85,7 @@ public class MagazineAdapter extends RecyclerView.Adapter<MagazineAdapter.ViewHo
 
         String image_path = GlobalEntities.ENDPOINT+magazine.getImage();
         image_path = image_path.replace(" ", "%20");
-        Picasso.with(mContext).load(image_path).error(R.drawable.holder).placeholder(R.drawable.holder).into(holder.newsIV);
+        Picasso.with(mContext).load(image_path).error(R.drawable.holder).placeholder(R.drawable.holder).into(holder.magazineIV);
     }
 
     @Override
