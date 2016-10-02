@@ -6,10 +6,12 @@ import android.util.Log;
 
 import com.egycps.abdulaziz.egycps.data.local.DatabaseHelper;
 import com.egycps.abdulaziz.egycps.data.local.PreferencesHelper;
+import com.egycps.abdulaziz.egycps.data.model.Book;
+import com.egycps.abdulaziz.egycps.data.model.Branch;
+import com.egycps.abdulaziz.egycps.data.model.Category;
 import com.egycps.abdulaziz.egycps.data.model.Magazine;
 import com.egycps.abdulaziz.egycps.data.model.News;
 import com.egycps.abdulaziz.egycps.data.model.Offer;
-import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.data.remote.Service;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 import com.squareup.picasso.Picasso;
@@ -18,11 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-import javax.inject.Singleton;
 
 import rx.Observable;
-import rx.Subscriber;
-import rx.functions.Func1;
 
 /**
  * Created by abdulaziz on 9/27/16.
@@ -59,6 +58,51 @@ public class DataManager {
 
     public PreferencesHelper getPreferencesHelper() {
         return mPreferencesHelper;
+    }
+
+    public Observable<ArrayList<Branch>> syncBranches(String cat_id){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncBranches");
+        return mService.getBranches(cat_id).asObservable();
+    }
+
+    public Observable<List<Branch>> getBranches(String offer_id){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: getBranches");
+        return mDatabaseHelper.getBranches(offer_id);
+    }
+
+    public Observable<Branch> setBranches(List<Branch> Branches){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: setBranches");
+        return mDatabaseHelper.setBranches(Branches);
+    }
+
+    public Observable<ArrayList<Book>> syncBooks(String cat_id){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncBooks");
+        return mService.getBooks(cat_id).asObservable();
+    }
+
+    public Observable<List<Book>> getBooks(String cat_id){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: getBooks");
+        return mDatabaseHelper.getBooks(cat_id);
+    }
+
+    public Observable<Book> setBooks(List<Book> books){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: setBooks");
+        return mDatabaseHelper.setBooks(books);
+    }
+
+    public Observable<ArrayList<Category>> syncLibraryCategories(){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncLibraryCategories");
+        return mService.getLibraryCategories().asObservable();
+    }
+
+    public Observable<List<Category>> getLibraryCategories(){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: getLibraryCategories");
+        return mDatabaseHelper.getLibraryCategories();
+    }
+
+    public Observable<Category> setLibraryCategories(List<Category> libraryCategories){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: setLibraryCategories");
+        return mDatabaseHelper.setLibraryCategories(libraryCategories);
     }
 
     public Observable<ArrayList<Magazine>> syncMagazines(){
@@ -110,17 +154,17 @@ public class DataManager {
         return mDatabaseHelper.setOffers(offers);
     }
 
-    public Observable<ArrayList<OffersCategory>> syncOffersCategories(){
+    public Observable<ArrayList<Category>> syncOffersCategories(){
         Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncOffersCategories");
         return mService.getOfferCategories().asObservable();
     }
 
-    public Observable<List<OffersCategory>> getOffersCategories(){
+    public Observable<List<Category>> getOffersCategories(){
         Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: getOffersCategories");
         return mDatabaseHelper.getOffersCategories();
     }
 
-    public Observable<OffersCategory> setOffersCategories(List<OffersCategory> offersCategories){
+    public Observable<Category> setOffersCategories(List<Category> offersCategories){
         Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: setOfferCategories");
         return mDatabaseHelper.setOffersCategories(offersCategories);
     }

@@ -1,6 +1,5 @@
 package com.egycps.abdulaziz.egycps.ui.splash;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,27 +11,14 @@ import com.egycps.abdulaziz.egycps.data.DataManager;
 import com.egycps.abdulaziz.egycps.data.local.DatabaseHelper;
 import com.egycps.abdulaziz.egycps.data.local.DbOpenHelper;
 import com.egycps.abdulaziz.egycps.data.local.PreferencesHelper;
-import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 import com.egycps.abdulaziz.egycps.data.remote.Service;
 import com.egycps.abdulaziz.egycps.ui.home.Home;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import javax.inject.Inject;
-
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
-
-public class Splash extends AppCompatActivity implements SplashBaseView{
-
-    @Inject SplashPresenter mSplashPresenter;
+public class Splash extends AppCompatActivity{
 
     private final int SPLASH_TIME_OUT = 1500;
 
@@ -84,15 +70,5 @@ public class Splash extends AppCompatActivity implements SplashBaseView{
 
         startActivity(Home.getStartIntent(this));
         finish();
-    }
-
-    @Override
-    public void saveCategories(List<OffersCategory> categories) {
-
-    }
-
-    @Override
-    public void showError() {
-
     }
 }

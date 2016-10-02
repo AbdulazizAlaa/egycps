@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.data.DataManager;
-import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
+import com.egycps.abdulaziz.egycps.data.model.Category;
 import com.egycps.abdulaziz.egycps.ui.offers.list.OffersList;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import rx.functions.Action1;
+
 
 public class OffersCategories extends AppCompatActivity implements OffersCategoriesBaseView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener{
 
@@ -36,7 +37,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     RecyclerView.LayoutManager categoriesLayoutManager;
     CategoriesAdapter categoriesAdapter;
 
-    ArrayList<OffersCategory> categoriesList;
+    ArrayList<Category> categoriesList;
 
     OffersCategoriesPresenter mOffersCategoriesPresenter;
 
@@ -75,7 +76,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
         //initializing the categories recycler view
         categoriesRecyclerView = (RecyclerView) findViewById(R.id.offers_categories_cat_recycler_view);
 
-        categoriesList = new ArrayList<OffersCategory>();
+        categoriesList = new ArrayList<Category>();
         categoriesLayoutManager = new GridLayoutManager(this, 2);
         categoriesRecyclerView.setLayoutManager(categoriesLayoutManager);
 
@@ -83,9 +84,9 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
         categoriesAdapter = new CategoriesAdapter(this, categoriesList);
         categoriesRecyclerView.setAdapter(categoriesAdapter);
         categoriesAdapter.getPositionClicks()
-                        .subscribe(new Action1<OffersCategory>() {
+                        .subscribe(new Action1<Category>() {
                             @Override
-                            public void call(OffersCategory cat) {
+                            public void call(Category cat) {
                                 Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "category id:: "+cat.getId());
                                 Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "category title:: "+cat.getTitle());
                                 Intent i = OffersList.getStartIntent(context);
@@ -135,7 +136,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     }
 
     @Override
-    public void syncOffersCategories(ArrayList<OffersCategory> categories) {
+    public void syncOffersCategories(ArrayList<Category> categories) {
         Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncOffersCategories");
 
         mOffersCategoriesPresenter.saveOffersCategories(categories);
@@ -149,7 +150,7 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     }
 
     @Override
-    public void showOffersCategories(List<OffersCategory> categories) {
+    public void showOffersCategories(List<Category> categories) {
         Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showOffersCategories"+categories.size());
         Log.i(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "showOffersCategories"+categoriesList.size());
 

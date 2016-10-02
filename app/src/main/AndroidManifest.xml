@@ -58,11 +58,12 @@
         <activity
             android:name=".ui.library.categories.LibraryCategories"
             android:screenOrientation="portrait"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme" />
         <activity
             android:name=".ui.library.list.LibraryList"
             android:screenOrientation="portrait"
-            android:theme="@style/FullscreenTheme"/>
+            android:theme="@style/FullscreenTheme" />
+        <activity android:name=".ui.offers.branches.BranchesActivity"></activity>
     </application>
 
 </manifest>

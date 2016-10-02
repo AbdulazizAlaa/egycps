@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
-import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
+import com.egycps.abdulaziz.egycps.data.model.Category;
 import com.egycps.abdulaziz.egycps.utils.Utils;
 
 import java.util.ArrayList;
@@ -24,9 +24,9 @@ import rx.subjects.PublishSubject;
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.ViewHolder>{
 
 
-    ArrayList<OffersCategory> data;
+    ArrayList<Category> data;
     Context mContext;
-    private final PublishSubject<OffersCategory> onClickSubject = PublishSubject.create();
+    private final PublishSubject<Category> onClickSubject = PublishSubject.create();
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         ImageView categoryIV;
@@ -39,7 +39,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         }
     }
 
-    public CategoriesAdapter(Context context, ArrayList<OffersCategory> data) {
+    public CategoriesAdapter(Context context, ArrayList<Category> data) {
         mContext = context;
         this.data = data;
     }
@@ -61,7 +61,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        final OffersCategory cat = data.get(position);
+        final Category cat = data.get(position);
         holder.categoryTV.setText(cat.getTitle());
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -89,7 +89,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Vi
         return data.size();
     }
 
-    public Observable<OffersCategory> getPositionClicks(){
+    public Observable<Category> getPositionClicks(){
         return onClickSubject.asObservable();
     }
 }

@@ -17,7 +17,7 @@ public class DbOpenHelper extends SQLiteOpenHelper{
     private static DbOpenHelper dbOpenHelper;
 
     public static final String DATABASE_NAME = "egycps.db";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
     private DbOpenHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -50,6 +50,9 @@ public class DbOpenHelper extends SQLiteOpenHelper{
             db.execSQL(Db.OffersTable.CREATE);
             db.execSQL(Db.NewsTable.CREATE);
             db.execSQL(Db.MagazinesTable.CREATE);
+            db.execSQL(Db.LibraryCategoriesTable.CREATE);
+            db.execSQL(Db.BooksTable.CREATE);
+            db.execSQL(Db.BranchesTable.CREATE);
 
             db.setTransactionSuccessful();
         }finally {
@@ -66,11 +69,17 @@ public class DbOpenHelper extends SQLiteOpenHelper{
             db.execSQL(Db.OffersTable.DROP);
             db.execSQL(Db.NewsTable.DROP);
             db.execSQL(Db.MagazinesTable.DROP);
+            db.execSQL(Db.LibraryCategoriesTable.DROP);
+            db.execSQL(Db.BooksTable.DROP);
+            db.execSQL(Db.BranchesTable.DROP);
 
             db.execSQL(Db.OffersCategoriesTable.CREATE);
             db.execSQL(Db.OffersTable.CREATE);
             db.execSQL(Db.NewsTable.CREATE);
             db.execSQL(Db.MagazinesTable.CREATE);
+            db.execSQL(Db.LibraryCategoriesTable.CREATE);
+            db.execSQL(Db.BooksTable.CREATE);
+            db.execSQL(Db.BranchesTable.CREATE);
 
             db.setTransactionSuccessful();
         }finally {

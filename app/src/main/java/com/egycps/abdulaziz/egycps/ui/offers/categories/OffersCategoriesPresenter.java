@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.egycps.abdulaziz.egycps.data.DataManager;
-import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
+import com.egycps.abdulaziz.egycps.data.model.Category;
 import com.egycps.abdulaziz.egycps.ui.base.BasePresenter;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 import com.egycps.abdulaziz.egycps.utils.RxUtil;
@@ -52,14 +52,14 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
         if(mSubscription!=null) mSubscription.unsubscribe();
     }
 
-    public void saveOffersCategories(ArrayList<OffersCategory> categories){
+    public void saveOffersCategories(ArrayList<Category> categories){
         Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "setOffersCategories");
         checkViewAttached();
 //        RxUtil.unsubscribe(mSubscription);
         mSubscription = mDataManager.setOffersCategories(categories)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<OffersCategory>() {
+                .subscribe(new Subscriber<Category>() {
                     @Override
                     public void onCompleted() {
                         Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "setOffersCategories: completed");
@@ -73,7 +73,7 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
                     }
 
                     @Override
-                    public void onNext(OffersCategory category) {
+                    public void onNext(Category category) {
                         Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "setOffersCategories: item " + category.getTitle());
 
                     }
@@ -89,10 +89,10 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
         mSubscription = mDataManager.syncOffersCategories()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .map(new Func1<ArrayList<OffersCategory>, ArrayList<OffersCategory>>() {
+                .map(new Func1<ArrayList<Category>, ArrayList<Category>>() {
                     @Override
-                    public ArrayList<OffersCategory> call(ArrayList<OffersCategory> categories) {
-                        for(OffersCategory category : categories){
+                    public ArrayList<Category> call(ArrayList<Category> categories) {
+                        for(Category category : categories){
                             final String path = category.getImage();
                             String[] names = path.split("/");
                             final String image_name = "/"+names[names.length-1];
@@ -120,7 +120,7 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
                         return categories;
                     }
                 })
-                .subscribe(new Subscriber<ArrayList<OffersCategory>>() {
+                .subscribe(new Subscriber<ArrayList<Category>>() {
                     @Override
                     public final void onCompleted() {
                         // do nothing
@@ -135,7 +135,7 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
                     }
 
                     @Override
-                    public void onNext(ArrayList<OffersCategory> offersCategories) {
+                    public void onNext(ArrayList<Category> offersCategories) {
                         Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "syncOffersCategories: onNext");
 //                        Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "---------------------------------------");
 //                        Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "id :: "+response.getId());
@@ -165,7 +165,7 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
         mSubscription = mDataManager.getOffersCategories()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
-                .subscribe(new Subscriber<List<OffersCategory>>() {
+                .subscribe(new Subscriber<List<Category>>() {
                     @Override
                     public void onCompleted() {
                         Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "loadOffersCategories: Completed");
@@ -178,7 +178,7 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
                     }
 
                     @Override
-                    public void onNext(List<OffersCategory> offersCategories) {
+                    public void onNext(List<Category> offersCategories) {
                         Log.i(GlobalEntities.OFFERS_CATEGORIES_PRESENTER_TAG, "loadOffersCategories: onNext: "+offersCategories.size());
                         if(offersCategories.isEmpty()){
                             getBaseView().showOffersCategoriesEmpty();

@@ -2,7 +2,7 @@ package com.egycps.abdulaziz.egycps.ui.offers.categories;
 
 import android.graphics.Bitmap;
 
-import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
+import com.egycps.abdulaziz.egycps.data.model.Category;
 import com.egycps.abdulaziz.egycps.ui.base.BaseView;
 
 import java.util.ArrayList;
@@ -17,11 +17,11 @@ public interface OffersCategoriesBaseView extends BaseView{
 
     void syncOffersCategoriesCompleted();
 
-    void syncOffersCategories(ArrayList<OffersCategory> category);
+    void syncOffersCategories(ArrayList<Category> category);
 
     void syncOffersCategoriesError(Throwable e);
 
-    void showOffersCategories(List<OffersCategory> categories);
+    void showOffersCategories(List<Category> categories);
 
     void showOffersCategoriesEmpty();
 

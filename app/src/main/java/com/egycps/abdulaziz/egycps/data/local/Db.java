@@ -3,10 +3,12 @@ package com.egycps.abdulaziz.egycps.data.local;
 import android.content.ContentValues;
 import android.database.Cursor;
 
+import com.egycps.abdulaziz.egycps.data.model.Book;
+import com.egycps.abdulaziz.egycps.data.model.Branch;
+import com.egycps.abdulaziz.egycps.data.model.Category;
 import com.egycps.abdulaziz.egycps.data.model.Magazine;
 import com.egycps.abdulaziz.egycps.data.model.News;
 import com.egycps.abdulaziz.egycps.data.model.Offer;
-import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 
 /**
  * Created by abdulaziz on 9/27/16.
@@ -14,6 +16,92 @@ import com.egycps.abdulaziz.egycps.data.model.OffersCategory;
 public class Db {
 
     public Db() {}
+
+    public abstract static class BranchesTable{
+        public static final String TABLE_NAME = "branches";
+
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_LAT = "latitude";
+        public static final String COLUMN_LONG = "longitude";
+        public static final String COLUMN_OFFER_ID = "offer_id";
+
+        public static final String CREATE =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_ID + " TEXT PRIMARY KEY, " +
+                        COLUMN_LAT + " TEXT NOT NULL, " +
+                        COLUMN_LONG + " TEXT NOT NULL, " +
+                        COLUMN_OFFER_ID + " TEXT NOT NULL " +
+                ");";
+
+        public static final String DROP = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
+
+        public static ContentValues toContentValues(Branch branch){
+            ContentValues values = new ContentValues();
+
+            values.put(COLUMN_ID, branch.getId());
+            values.put(COLUMN_LAT, branch.getLatitude());
+            values.put(COLUMN_LONG, branch.getLongitude());
+            values.put(COLUMN_OFFER_ID, branch.getOffer_id());
+
+            return values;
+        }
+
+        public static Branch parseCursor(Cursor cursor){
+            Branch branch = new Branch(
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LAT)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LONG)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_OFFER_ID))
+            );
+
+            return branch;
+        }
+    }
+
+    public abstract static class BooksTable{
+        public static final String TABLE_NAME = "books";
+
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_TITLE = "title";
+        public static final String COLUMN_IMAGE = "image";
+        public static final String COLUMN_FILE = "file";
+        public static final String COLUMN_CAT_ID = "cat_id";
+
+        public static final String CREATE =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_ID + " TEXT PRIMARY KEY, " +
+                        COLUMN_TITLE + " TEXT NOT NULL, " +
+                        COLUMN_IMAGE + " TEXT NOT NULL, " +
+                        COLUMN_FILE + " TEXT NOT NULL, " +
+                        COLUMN_CAT_ID + " TEXT NOT NULL " +
+                        ");";
+
+        public static final String DROP = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
+
+        public static ContentValues toContentValues(Book book){
+            ContentValues values = new ContentValues();
+
+            values.put(COLUMN_ID, book.getId());
+            values.put(COLUMN_TITLE, book.getTitle());
+            values.put(COLUMN_IMAGE, book.getImage());
+            values.put(COLUMN_FILE, book.getFile());
+            values.put(COLUMN_CAT_ID, book.getCategory_library_id());
+
+            return values;
+        }
+
+        public static Book parseCursor(Cursor cursor){
+            Book book = new Book(
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IMAGE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_FILE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CAT_ID))
+            );
+
+            return book;
+        }
+    }
 
     public abstract static class MagazinesTable{
         public static final String TABLE_NAME = "magazines";
@@ -146,6 +234,47 @@ public class Db {
         }
     }
 
+    public abstract static class LibraryCategoriesTable{
+        public static final String TABLE_NAME = "library_categories";
+
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_TITLE = "title";
+        public static final String COLUMN_IMAGE = "image";
+        public static final String COLUMN_DESC = "desc";
+
+        public static final String CREATE =
+                "CREATE TABLE " + TABLE_NAME + " (" +
+                        COLUMN_ID + " TEXT PRIMARY KEY, " +
+                        COLUMN_TITLE + " TEXT NOT NULL, " +
+                        COLUMN_IMAGE + " TEXT NOT NULL, " +
+                        COLUMN_DESC + " TEXT NOT NULL " +
+                        ");";
+
+        public static final String DROP = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
+
+        public static ContentValues toContentValues(Category category){
+            ContentValues values = new ContentValues();
+
+            values.put(COLUMN_ID, category.getId());
+            values.put(COLUMN_TITLE, category.getTitle());
+            values.put(COLUMN_IMAGE, category.getImage());
+            values.put(COLUMN_DESC, category.getDescription());
+
+            return values;
+        }
+
+        public static Category parseCursor(Cursor cursor){
+            Category category = new Category(
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IMAGE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESC))
+            );
+
+            return category;
+        }
+    }
+
     public abstract static class OffersCategoriesTable{
         public static final String TABLE_NAME = "offers_categories";
 
@@ -164,7 +293,7 @@ public class Db {
 
         public static final String DROP = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
 
-        public static ContentValues toContentValues(OffersCategory category){
+        public static ContentValues toContentValues(Category category){
             ContentValues values = new ContentValues();
 
             values.put(COLUMN_ID, category.getId());
@@ -175,8 +304,8 @@ public class Db {
             return values;
         }
 
-        public static OffersCategory parseCursor(Cursor cursor){
-            OffersCategory category = new OffersCategory(
+        public static Category parseCursor(Cursor cursor){
+            Category category = new Category(
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IMAGE)),
