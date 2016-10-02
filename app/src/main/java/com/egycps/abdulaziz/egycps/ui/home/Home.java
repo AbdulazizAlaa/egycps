@@ -15,7 +15,7 @@ import com.egycps.abdulaziz.egycps.ui.contact_us.ContactUs;
 import com.egycps.abdulaziz.egycps.ui.library.categories.LibraryCategories;
 import com.egycps.abdulaziz.egycps.ui.magazine.MagazineActivity;
 import com.egycps.abdulaziz.egycps.ui.members.Members;
-import com.egycps.abdulaziz.egycps.ui.news.NewsActivity;
+import com.egycps.abdulaziz.egycps.ui.news.list.NewsActivity;
 import com.egycps.abdulaziz.egycps.ui.offers.categories.OffersCategories;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 

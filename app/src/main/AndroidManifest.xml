@@ -52,7 +52,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity
-            android:name=".ui.news.NewsActivity"
+            android:name=".ui.news.list.NewsActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
         <activity
@@ -63,7 +63,14 @@
             android:name=".ui.library.list.LibraryList"
             android:screenOrientation="portrait"
             android:theme="@style/FullscreenTheme" />
-        <activity android:name=".ui.offers.branches.BranchesActivity"></activity>
+        <activity
+            android:name=".ui.offers.branches.BranchesActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme"/>
+        <activity
+            android:name=".ui.news.item.NewsItemActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/FullscreenTheme"/>
     </application>
 
 </manifest>
