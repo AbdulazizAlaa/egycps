@@ -52,6 +52,8 @@
                     android:id="@+id/offer_item_content_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="3"
                     android:text="This a content for this offer here. This is a multi line offer with a lot of content to be said."
                     android:textColor="@color/offer_item_text_desc_color"
                     android:textStyle="normal"/>

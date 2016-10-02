@@ -21,6 +21,7 @@ public class Db {
         public static final String TABLE_NAME = "branches";
 
         public static final String COLUMN_ID = "id";
+        public static final String COLUMN_NAME = "name";
         public static final String COLUMN_LAT = "latitude";
         public static final String COLUMN_LONG = "longitude";
         public static final String COLUMN_OFFER_ID = "offer_id";
@@ -28,6 +29,7 @@ public class Db {
         public static final String CREATE =
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         COLUMN_ID + " TEXT PRIMARY KEY, " +
+                        COLUMN_NAME + " TEXT NOT NULL, " +
                         COLUMN_LAT + " TEXT NOT NULL, " +
                         COLUMN_LONG + " TEXT NOT NULL, " +
                         COLUMN_OFFER_ID + " TEXT NOT NULL " +
@@ -39,6 +41,7 @@ public class Db {
             ContentValues values = new ContentValues();
 
             values.put(COLUMN_ID, branch.getId());
+            values.put(COLUMN_NAME, branch.getName());
             values.put(COLUMN_LAT, branch.getLatitude());
             values.put(COLUMN_LONG, branch.getLongitude());
             values.put(COLUMN_OFFER_ID, branch.getOffer_id());
@@ -49,6 +52,7 @@ public class Db {
         public static Branch parseCursor(Cursor cursor){
             Branch branch = new Branch(
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LAT)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_LONG)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_OFFER_ID))

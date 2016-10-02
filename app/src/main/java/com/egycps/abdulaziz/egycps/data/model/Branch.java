@@ -6,15 +6,25 @@ package com.egycps.abdulaziz.egycps.data.model;
 public class Branch {
 
     private String id;
+    private String name;
     private String latitude;
     private String longitude;
     private String offer_id;
 
-    public Branch(String id, String latitude, String longitude, String offer_id) {
+    public Branch(String id, String name, String latitude, String longitude, String offer_id) {
         this.id = id;
+        this.name = name;
         this.latitude = latitude;
         this.longitude = longitude;
         this.offer_id = offer_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getId() {

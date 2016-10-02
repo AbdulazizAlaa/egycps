@@ -60,9 +60,9 @@ public class DataManager {
         return mPreferencesHelper;
     }
 
-    public Observable<ArrayList<Branch>> syncBranches(String cat_id){
+    public Observable<ArrayList<Branch>> syncBranches(String offer_id){
         Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncBranches");
-        return mService.getBranches(cat_id).asObservable();
+        return mService.getBranches(offer_id).asObservable();
     }
 
     public Observable<List<Branch>> getBranches(String offer_id){

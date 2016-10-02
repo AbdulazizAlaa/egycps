@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.data.DataManager;
 import com.egycps.abdulaziz.egycps.data.model.Offer;
+import com.egycps.abdulaziz.egycps.ui.offers.branches.BranchesActivity;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
 
 import java.util.ArrayList;
@@ -97,9 +98,14 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
         offersAdapter.getPositionClicks()
                 .subscribe(new Action1<Offer>() {
                     @Override
-                    public void call(Offer o) {
-                        Log.i(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "offer id:: "+o.getId());
-                        Log.i(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "offer title:: "+o.getName());
+                    public void call(Offer offer) {
+                        Log.i(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "offer id:: "+offer.getId());
+                        Log.i(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "offer title:: "+offer.getName());
+
+                        Intent i = BranchesActivity.getStartIntent(context);
+                        i.putExtra(GlobalEntities.OFFER_OFFER_ID_TAG, offer.getId());
+                        startActivity(i);
+
                     }
                 });
 

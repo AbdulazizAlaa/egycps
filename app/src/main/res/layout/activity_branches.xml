@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:background="@drawable/bg_solid"
-    android:id="@+id/news_main_view">
+    android:id="@+id/branches_main_view">
 
 
     <!-- toolbar -->
     <android.support.v7.widget.Toolbar
-        android:id="@+id/news_toolbar"
+        android:id="@+id/branches_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/toolbar_background_color"
@@ -36,7 +36,7 @@
                 android:background="@color/toolbar_divider_color"/>
 
             <LinearLayout
-                android:id="@+id/news_home_btn"
+                android:id="@+id/branches_home_btn"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="4"
@@ -59,11 +59,11 @@
         android:padding="4dp"
         android:background="@color/activity_title_color">
         <TextView
-            android:id="@+id/news_title_tv"
+            android:id="@+id/branches_title_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="News"
+            android:text="Branches"
             android:textStyle="normal"
             android:textSize="@dimen/toolbar_text_size"
             android:textColor="#FFFFFF"
@@ -71,11 +71,11 @@
     </LinearLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/news_refresh_l"
+        android:id="@+id/branches_refresh_l"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/news_recycler_view"
+            android:id="@+id/branches_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scrollbars="vertical"/>

@@ -21,6 +21,7 @@ public class GlobalEntities {
     //tags
     public final static String OFFER_CATEGORY_ID_TAG = "offer_category_id";
     public final static String OFFER_CATEGORY_TITLE_TAG = "offer_category_title";
+    public final static String OFFER_OFFER_ID_TAG = "offer_offer_id";
     public final static String LIBRARY_CATEGORY_ID_TAG = "library_category_id";
     public final static String LIBRARY_CATEGORY_TITLE_TAG = "library_category_title";
     public final static String NEWS_TITLE_TAG = "news_title";
@@ -37,6 +38,8 @@ public class GlobalEntities {
     public final static String OFFERS_CATEGORIES_ADAPTER_TAG = "offers_cat_adapter";
     public final static String OFFERS_LIST_PRESENTER_TAG = "offers_list_presenter";
     public final static String OFFERS_LIST_ACTIVITY_TAG = "offers_list_activity";
+    public final static String BRANCHES_PRESENTER_TAG = "branches_presenter";
+    public final static String BRANCHES_ACTIVITY_TAG = "branches_activity";
     public final static String NEWS_PRESENTER_TAG = "news_presenter";
     public final static String NEWS_ACTIVITY_TAG = "news_activity";
     public final static String NEWS_ITEM_ACTIVITY_TAG = "news_item_activity";
