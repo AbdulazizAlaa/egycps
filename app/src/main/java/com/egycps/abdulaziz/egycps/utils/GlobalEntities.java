@@ -16,7 +16,15 @@ public class GlobalEntities {
     public final static String DB_OPEN_HELPER = "db_open_helper";
     public final static String UTILS_CLASS_TAG = "utils";
     public final static String APP_DIR_TAG = "egycps_app_dir";
+    public final static String NEWS_NOTIFICATION_COUNT_TAG = "news_notification_count";
+    public final static String OFFERS_NOTIFICATION_COUNT_TAG = "offers_notification_count";
+    public final static String NEWS_NOTIFICATION_TYPE_TAG = "news";
+    public final static String OFFERS_NOTIFICATION_TYPE_TAG = "offers";
+    public final static String NOTIFICATION_TYPE_TAG = "notification_type";
+    public final static String NOTIFICATION_TEXT_TAG = "notification_text";
 
+    //BroadCast
+    public final static String BROADCAST_NOTIFICATION_HANDLER_TAG = "broadcast_notification";
 
     //tags
     public final static String OFFER_CATEGORY_ID_TAG = "offer_category_id";

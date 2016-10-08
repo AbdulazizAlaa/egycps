@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "889168502523",
+    "firebase_url": "https://egycps-9906b.firebaseio.com",
+    "project_id": "egycps-9906b",
+    "storage_bucket": "egycps-9906b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:889168502523:android:19d30370449a96b5",
+        "android_client_info": {
+          "package_name": "com.egycps.abdulaziz.egycps"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "889168502523-1ocbpefv0dnevb29vnf9cunp1rcugpfn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.egycps.abdulaziz.egycps",
+            "certificate_hash": "48EF4F889D262C7E6415FEB19BC7F2BBF8E3DDA3"
+          }
+        },
+        {
+          "client_id": "889168502523-b4r04c39k0hdcpr6jbaji2887rc81c4o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiBZX_Tpu823c6Ge7-mT1aoTpRAQ9mwPM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "889168502523-b4r04c39k0hdcpr6jbaji2887rc81c4o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

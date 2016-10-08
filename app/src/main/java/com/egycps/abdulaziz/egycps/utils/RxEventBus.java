@@ -1,7 +1,5 @@
 package com.egycps.abdulaziz.egycps.utils;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import rx.Observable;
 import rx.functions.Func1;
@@ -14,12 +12,10 @@ import rx.subjects.PublishSubject;
  *
  */
 
-@Singleton
 public class RxEventBus {
 
     private final PublishSubject<Object> mBusSubject;
 
-    @Inject
     public RxEventBus(){
         mBusSubject = PublishSubject.create();
     }

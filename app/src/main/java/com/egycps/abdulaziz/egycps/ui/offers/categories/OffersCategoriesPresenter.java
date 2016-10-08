@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
@@ -35,7 +33,6 @@ public class OffersCategoriesPresenter extends BasePresenter<OffersCategoriesBas
     private Subscription mSubscription;
     private final Context mContext;
 
-    @Inject
     public OffersCategoriesPresenter(Context context, DataManager mDataManager) {
         this.mDataManager = mDataManager;
         mContext = context;

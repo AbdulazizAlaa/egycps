@@ -1,8 +1,10 @@
 package com.egycps.abdulaziz.egycps.ui.home;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
+import com.egycps.abdulaziz.egycps.data.local.PreferencesHelper;
+import com.egycps.abdulaziz.egycps.data.remote.EgyCpsFirebaseMessagingService;
 import com.egycps.abdulaziz.egycps.ui.contact_us.ContactUs;
 import com.egycps.abdulaziz.egycps.ui.library.categories.LibraryCategories;
 import com.egycps.abdulaziz.egycps.ui.magazine.MagazineActivity;
@@ -18,6 +22,9 @@ import com.egycps.abdulaziz.egycps.ui.members.Members;
 import com.egycps.abdulaziz.egycps.ui.news.list.NewsActivity;
 import com.egycps.abdulaziz.egycps.ui.offers.categories.OffersCategories;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.firebase.iid.FirebaseInstanceId;
+
 
 public class Home extends Activity implements View.OnClickListener{
 
@@ -26,6 +33,8 @@ public class Home extends Activity implements View.OnClickListener{
     FrameLayout newsNotificationBadge, offersNotificationBadge;
 
     TextView newsNotificationText, offersNotificationText;
+
+    int offers_num_notifications, news_num_notifications;
 
     public static Intent getStartIntent(Context context){
         Intent i = new Intent(context, Home.class);
@@ -41,8 +50,39 @@ public class Home extends Activity implements View.OnClickListener{
 
         init();
 
+        registerReceiver(notificationHandler, new IntentFilter(GlobalEntities.BROADCAST_NOTIFICATION_HANDLER_TAG));
+
+        startService(new Intent(Home.this, EgyCpsFirebaseMessagingService.class));
+        Log.d(GlobalEntities.HOME_ACTIVITY_TAG, "Refreshed token: " + FirebaseInstanceId.getInstance().getToken());
+
     }
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        updateNotification();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(notificationHandler);
+    }
+
+    private void updateNotification(){
+        news_num_notifications = Integer.parseInt(PreferencesHelper.getFromPrefs(this, GlobalEntities.NEWS_NOTIFICATION_COUNT_TAG, "0"));
+        offers_num_notifications = Integer.parseInt(PreferencesHelper.getFromPrefs(this, GlobalEntities.OFFERS_NOTIFICATION_COUNT_TAG, "0"));
+        if(news_num_notifications > 0){
+            newsNotificationText.setText(String.valueOf(news_num_notifications));
+            newsNotificationBadge.setVisibility(View.VISIBLE);
+        }
+        if(offers_num_notifications > 0){
+            offersNotificationText.setText(String.valueOf(offers_num_notifications));
+            offersNotificationBadge.setVisibility(View.VISIBLE);
+        }
+    }
 
     private void init(){
         //initializing menu items
@@ -76,11 +116,23 @@ public class Home extends Activity implements View.OnClickListener{
             case R.id.home_menu_news_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: news");
                 startActivity(NewsActivity.getStartIntent(this));
+                if(news_num_notifications > 0){
+                    newsNotificationText.setText("");
+                    newsNotificationBadge.setVisibility(View.GONE);
+                    news_num_notifications = 0;
+                    PreferencesHelper.saveToPrefs(getApplicationContext(), GlobalEntities.NEWS_NOTIFICATION_COUNT_TAG, String.valueOf(news_num_notifications));
+                }
                 break;
 
             case R.id.home_menu_offers_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: offers");
                 startActivity(OffersCategories.getStartIntent(this));
+                if(offers_num_notifications > 0){
+                    offersNotificationText.setText("");
+                    offersNotificationBadge.setVisibility(View.GONE);
+                    offers_num_notifications = 0;
+                    PreferencesHelper.saveToPrefs(getApplicationContext(), GlobalEntities.OFFERS_NOTIFICATION_COUNT_TAG, String.valueOf(offers_num_notifications));
+                }
                 break;
 
             case R.id.home_menu_library_item:
@@ -104,4 +156,11 @@ public class Home extends Activity implements View.OnClickListener{
                 break;
         }
     }
+
+    private BroadcastReceiver notificationHandler = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            updateNotification();
+        }
+    };
 }

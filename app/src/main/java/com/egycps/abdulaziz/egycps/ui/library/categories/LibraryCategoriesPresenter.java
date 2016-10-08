@@ -15,7 +15,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
 
 import rx.Subscriber;
 import rx.Subscription;
@@ -32,7 +31,6 @@ public class LibraryCategoriesPresenter extends BasePresenter<LibraryCategoriesB
     private Subscription mSubscription;
     private final Context mContext;
 
-    @Inject
     public LibraryCategoriesPresenter(Context context, DataManager mDataManager) {
         this.mDataManager = mDataManager;
         mContext = context;
