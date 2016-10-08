@@ -224,7 +224,7 @@ public class DatabaseHelper {
         Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: getNews");
         return mDB.createQuery(Db.NewsTable.TABLE_NAME,
                 "SELECT * FROM " + Db.NewsTable.TABLE_NAME +
-                " ORDER BY " + Db.NewsTable.COLUMN_ID + " LIMIT 10")
+                " ORDER BY " + Db.NewsTable.COLUMN_CREATE_DATE + " LIMIT 10")
                 .mapToList(new Func1<Cursor, News>() {
                     @Override
                     public News call(Cursor cursor) {

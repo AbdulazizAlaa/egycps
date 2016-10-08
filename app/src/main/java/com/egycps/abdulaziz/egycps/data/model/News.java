@@ -1,5 +1,7 @@
 package com.egycps.abdulaziz.egycps.data.model;
 
+import android.util.Log;
+
 /**
  * Created by abdulaziz on 10/1/16.
  */
@@ -9,12 +11,22 @@ public class News {
     private String title;
     private String description;
     private String image;
+    private String created_at;
 
-    public News(String id, String title, String description, String image) {
+    public News(String id, String title, String description, String image, String created_at) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.image = image;
+        this.created_at = created_at;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(String created_at) {
+        this.created_at = created_at;
     }
 
     public String getId() {

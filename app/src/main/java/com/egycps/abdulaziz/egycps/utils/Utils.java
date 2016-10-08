@@ -15,6 +15,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.text.format.DateFormat;
 import android.util.Log;
 
 import java.io.File;
@@ -25,7 +26,7 @@ import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -33,6 +34,12 @@ import java.util.Random;
  */
 public class Utils {
 
+    public static String getDate(long time) {
+        Calendar cal = Calendar.getInstance(Locale.ENGLISH);
+        cal.setTimeInMillis(time*1000);
+        String date = DateFormat.format("dd-MM-yyyy", cal).toString();
+        return date;
+    }
 
     public static boolean hasActiveInternetConnection(Context context) {
         if (isNetworkAvailable(context)) {

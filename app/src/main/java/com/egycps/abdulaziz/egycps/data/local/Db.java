@@ -155,13 +155,15 @@ public class Db {
         public static final String COLUMN_TITLE = "title";
         public static final String COLUMN_DESC = "desc";
         public static final String COLUMN_IMAGE = "image";
+        public static final String COLUMN_CREATE_DATE = "create_date";
 
         public static final String CREATE =
                 "CREATE TABLE " + TABLE_NAME + " (" +
                         COLUMN_ID + " TEXT PRIMARY KEY, " +
                         COLUMN_TITLE + " TEXT NOT NULL, " +
                         COLUMN_DESC + " TEXT NOT NULL, " +
-                        COLUMN_IMAGE + " TEXT NOT NULL " +
+                        COLUMN_IMAGE + " TEXT NOT NULL, " +
+                        COLUMN_CREATE_DATE + " TIMESTAMP NOT NULL " +
                 ");";
 
         public static final String DROP = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
@@ -173,6 +175,7 @@ public class Db {
             values.put(COLUMN_TITLE, news.getTitle());
             values.put(COLUMN_DESC, news.getDescription());
             values.put(COLUMN_IMAGE, news.getImage());
+            values.put(COLUMN_CREATE_DATE, news.getCreated_at());
 
             return values;
         }
@@ -182,7 +185,8 @@ public class Db {
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_TITLE)),
                     cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_DESC)),
-                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IMAGE))
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_IMAGE)),
+                    cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_CREATE_DATE))
             );
 
             return news;

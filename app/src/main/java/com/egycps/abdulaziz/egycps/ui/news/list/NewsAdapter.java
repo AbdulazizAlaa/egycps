@@ -5,6 +5,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.data.model.News;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
+import com.egycps.abdulaziz.egycps.utils.Utils;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -35,13 +37,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
         ImageView newsIV;
         TextView titleTV;
         TextView descTV;
+        TextView dateTV;
 
-        public ViewHolder(View itemView, ImageView newsIV, TextView titleTV, TextView descTV) {
+        public ViewHolder(View itemView, ImageView newsIV, TextView titleTV, TextView descTV, TextView dateTV) {
             super(itemView);
             this.newsIV = newsIV;
             this.titleTV = titleTV;
             this.descTV = descTV;
+            this.dateTV = dateTV;
         }
+
     }
 
     public NewsAdapter(Context context, ArrayList<News> data) {
@@ -58,8 +63,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
         ImageView offerIV = (ImageView) v.findViewById(R.id.news_item_image_iv);
         TextView titleTV = (TextView) v.findViewById(R.id.news_item_title_tv);
         TextView descTV = (TextView) v.findViewById(R.id.news_item_content_tv);
+        TextView dateTV = (TextView) v.findViewById(R.id.news_item_date_tv);
 
-        ViewHolder vh = new ViewHolder(v, offerIV, titleTV, descTV);
+        ViewHolder vh = new ViewHolder(v, offerIV, titleTV, descTV, dateTV);
 
         return vh;
     }
@@ -73,6 +79,8 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder>{
 
         Spanned content = Html.fromHtml(news.getDescription());
         holder.descTV.setText(content);
+
+        holder.dateTV.setText(Utils.getDate(Long.parseLong(news.getCreated_at())));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -28,7 +28,7 @@
                 android:scaleType="fitXY"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_weight="1"
                 android:layout_gravity="top"
@@ -38,9 +38,11 @@
                 android:paddingTop="5dp">
                 <TextView
                     android:id="@+id/news_item_title_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingBottom="10dp"
+                    android:gravity="left"
+                    android:layout_gravity="left"
                     android:text="Title"
                     android:lines="1"
                     android:maxLines="1"
@@ -50,13 +52,27 @@
 
                 <TextView
                     android:id="@+id/news_item_content_tv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:layout_gravity="left"
                     android:ellipsize="end"
                     android:maxLines="3"
                     android:text="This a content for this offer here. This is a multi line offer with a lot of content to be said."
                     android:textColor="@color/offer_item_text_desc_color"
                     android:textStyle="normal"/>
+
+                <TextView
+                    android:id="@+id/news_item_date_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right|bottom"
+                    android:layout_gravity="right|bottom"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:textColor="#000000"
+                    android:textStyle="normal"
+                    android:text="2001-1-1"/>
 
             </LinearLayout>
         </LinearLayout>
