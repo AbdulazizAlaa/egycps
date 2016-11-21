@@ -77,6 +77,9 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
         categoriesRecyclerView = (RecyclerView) findViewById(R.id.offers_categories_cat_recycler_view);
 
         categoriesList = new ArrayList<Category>();
+        /////
+        categoriesList.add(new Category("1", "offers", "", "desc"));
+        /////
         categoriesLayoutManager = new GridLayoutManager(this, 2);
         categoriesRecyclerView.setLayoutManager(categoriesLayoutManager);
 
@@ -107,8 +110,8 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
             }
         });
 
-        mOffersCategoriesPresenter.loadOffersCategories();
-        mOffersCategoriesPresenter.syncOffersCategories();
+//        mOffersCategoriesPresenter.loadOffersCategories();
+//        mOffersCategoriesPresenter.syncOffersCategories();
 
     }
 

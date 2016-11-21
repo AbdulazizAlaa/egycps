@@ -1,9 +1,15 @@
 package com.egycps.abdulaziz.egycps.ui.offers.branches;
 
+import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.location.Location;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,15 +23,28 @@ import android.widget.TextView;
 
 import com.egycps.abdulaziz.egycps.R;
 import com.egycps.abdulaziz.egycps.data.DataManager;
+import com.egycps.abdulaziz.egycps.data.local.PreferencesHelper;
 import com.egycps.abdulaziz.egycps.data.model.Branch;
+import com.egycps.abdulaziz.egycps.ui.offers.list.OffersList;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
+import com.egycps.abdulaziz.egycps.utils.Utils;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.FusedLocationProviderApi;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import rx.functions.Action1;
 
-public class BranchesActivity extends AppCompatActivity implements BranchesBaseView, View.OnClickListener, SwipeRefreshLayout.OnRefreshListener {
+public class BranchesActivity extends AppCompatActivity implements BranchesBaseView, View.OnClickListener,
+        SwipeRefreshLayout.OnRefreshListener{
 
     String id;
 
@@ -44,7 +63,9 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
 
     SwipeRefreshLayout branchesListRefreshL;
 
-    public static Intent getStartIntent(Context context){
+    Location mCurrentLocation;
+
+    public static Intent getStartIntent(Context context) {
         Intent i = new Intent(context, BranchesActivity.class);
 
         return i;
@@ -55,16 +76,23 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_branches);
 
-        if(getIntent() != null){
+        if (getIntent() != null) {
             id = getIntent().getStringExtra(GlobalEntities.OFFER_OFFER_ID_TAG);
-        }else {
+        } else {
             id = "1";
         }
 
         init();
     }
 
-    private void init(){
+    private void init() {
+        //getting current location
+        String lat = PreferencesHelper.getFromPrefs(BranchesActivity.this, GlobalEntities.LATITUDE_TAG, "");
+        String lng = PreferencesHelper.getFromPrefs(BranchesActivity.this, GlobalEntities.LONGITUDE_TAG, "");
+        mCurrentLocation = new Location("");
+        mCurrentLocation.setLatitude(Double.parseDouble(lat));
+        mCurrentLocation.setLongitude(Double.parseDouble(lng));
+
         //initializing the toolbar
         mainView = findViewById(R.id.branches_main_view);
         toolbar = (Toolbar) findViewById(R.id.branches_toolbar);
@@ -82,8 +110,46 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
         branchesRecyclerView = (RecyclerView) findViewById(R.id.branches_recycler_view);
 
         branchesList = new ArrayList<Branch>();
+        /////
+        branchesList.add(new Branch("1", "CIB", "30.058851", "31.490919", "1"));
+        branchesList.add(new Branch("1", "Ahmed Shawki", "30.064794", "31.493852", "1"));
+        branchesList.add(new Branch("1", "Market", "30.057560", "31.490688", "1"));
+        branchesList.add(new Branch("1", "down street", "30.066996", "31.493986", "1"));
+        boolean isDone = true;
+        while (isDone){
+            isDone = false;
+            for(int i=0 ; i<branchesList.size()-1 ; i++){
+                double a_lat = mCurrentLocation.getLatitude();
+                double a_lng = mCurrentLocation.getLongitude();
+                //i
+                double o_lat1 = Double.valueOf(branchesList.get(i).getLatitude());
+                double o_lng1 = Double.valueOf(branchesList.get(i).getLongitude());
+                //i+1
+                double o_lat2 = Double.valueOf(branchesList.get(i+1).getLatitude());
+                double o_lng2 = Double.valueOf(branchesList.get(i+1).getLongitude());
 
-        branchesLayoutManager= new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
+                double d1 = Math.sqrt( Math.pow( (o_lat1-a_lat), 2 ) + Math.pow( (o_lng1-a_lng), 2 ) );
+                double d2 = Math.sqrt( Math.pow( (o_lat2-a_lat), 2 ) + Math.pow( (o_lng2-a_lng), 2 ) );
+
+                if(d2<d1){
+                    isDone = true;
+
+                    Branch tmp1 = branchesList.get(i);
+                    Branch tmp2 = branchesList.get(i+1);
+                    branchesList.remove(i);
+                    branchesList.remove(i);
+                    branchesList.add(i, tmp2);
+                    branchesList.add(i+1, tmp1);
+                }
+            }
+        }
+        for (Branch b: branchesList) {
+            System.out.println(b.getName());
+        }
+        /////
+
+
+        branchesLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         branchesRecyclerView.setLayoutManager(branchesLayoutManager);
 
         final Context context = this;
@@ -93,10 +159,10 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
                 .subscribe(new Action1<Branch>() {
                     @Override
                     public void call(Branch branch) {
-                        Log.i(GlobalEntities.BRANCHES_ACTIVITY_TAG, "branch id:: "+branch.getId());
-                        Log.i(GlobalEntities.BRANCHES_ACTIVITY_TAG, "branch title:: "+branch.getName());
+                        Log.i(GlobalEntities.BRANCHES_ACTIVITY_TAG, "branch id:: " + branch.getId());
+                        Log.i(GlobalEntities.BRANCHES_ACTIVITY_TAG, "branch title:: " + branch.getName());
 
-                        try{
+                        try {
                             double latitude = Double.parseDouble(branch.getLatitude());
                             double longitude = Double.parseDouble(branch.getLongitude());
                             String label = branch.getName();
@@ -107,9 +173,9 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
                             Uri uri = Uri.parse(uriString);
                             Intent intent = new Intent(android.content.Intent.ACTION_VIEW, uri);
                             startActivity(intent);
-                        }catch (Exception e){
+                        } catch (Exception e) {
                             e.printStackTrace();
-                            Snackbar.make(mainView, "Oops.. Your Maps Does not look to be working!!", Snackbar.LENGTH_SHORT).show();
+                            Snackbar.make(mainView, "Oops.. Your Maps seems to be not functional!!", Snackbar.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -126,7 +192,7 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
             }
         });
 
-        Log.i(GlobalEntities.BRANCHES_ACTIVITY_TAG, "offer id:: "+id);
+        Log.i(GlobalEntities.BRANCHES_ACTIVITY_TAG, "offer id:: " + id);
         mBranchesPresenter.loadBranches(id);
         mBranchesPresenter.syncBranches(id);
 
@@ -134,7 +200,7 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.branches_home_btn:
                 Log.i(GlobalEntities.BRANCHES_ACTIVITY_TAG, "onClick: home button");
                 onBackPressed();
@@ -149,8 +215,8 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
     }
 
     @Override
-    public void saveBranchesListError(Throwable e){
-        Log.e(GlobalEntities.BRANCHES_ACTIVITY_TAG, "saveBranchesList: Error: "+e.getMessage());
+    public void saveBranchesListError(Throwable e) {
+        Log.e(GlobalEntities.BRANCHES_ACTIVITY_TAG, "saveBranchesList: Error: " + e.getMessage());
         branchesListRefreshL.setRefreshing(false);
 
 //        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
@@ -164,7 +230,7 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
 
     @Override
     public void syncBranchesListError(Throwable e) {
-        Log.e(GlobalEntities.BRANCHES_ACTIVITY_TAG, "syncBranchesList: Error:: "+e.getMessage());
+        Log.e(GlobalEntities.BRANCHES_ACTIVITY_TAG, "syncBranchesList: Error:: " + e.getMessage());
         mBranchesPresenter.loadBranches(id);
 //        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
@@ -188,9 +254,9 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
 
     @Override
     public void showBranchesListError(Throwable e) {
-        Log.e(GlobalEntities.BRANCHES_ACTIVITY_TAG, "showBranchesList: Error:: "+e.getMessage());
+        Log.e(GlobalEntities.BRANCHES_ACTIVITY_TAG, "showBranchesList: Error:: " + e.getMessage());
         branchesListRefreshL.setRefreshing(false);
-        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
+        Snackbar.make(mainView, "Oops.. " + e.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -204,7 +270,7 @@ public class BranchesActivity extends AppCompatActivity implements BranchesBaseV
 
     @Override
     public void onRefresh() {
-        Log.i(GlobalEntities.BRANCHES_ACTIVITY_TAG, "BranchesList: refresh: "+id);
+        Log.i(GlobalEntities.BRANCHES_ACTIVITY_TAG, "BranchesList: refresh: " + id);
 
         branchesListRefreshL.setRefreshing(true);
 

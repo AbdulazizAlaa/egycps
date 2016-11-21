@@ -35,6 +35,8 @@ public class GlobalEntities {
     public final static String NEWS_TITLE_TAG = "news_title";
     public final static String NEWS_CONTENT_TAG = "news_content";
     public final static String NEWS_IMAGE_TAG = "news_image";
+    public final static String LONGITUDE_TAG = "longitude";
+    public final static String LATITUDE_TAG = "latitude";
 
     //activities and presentation layer
     public final static String SPLASH_PRESENTER_TAG = "splash_presenter";

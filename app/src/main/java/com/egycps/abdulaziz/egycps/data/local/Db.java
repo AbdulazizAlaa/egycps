@@ -2,6 +2,7 @@ package com.egycps.abdulaziz.egycps.data.local;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.location.Location;
 
 import com.egycps.abdulaziz.egycps.data.model.Book;
 import com.egycps.abdulaziz.egycps.data.model.Branch;

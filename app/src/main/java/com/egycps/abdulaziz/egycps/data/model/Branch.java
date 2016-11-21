@@ -1,9 +1,13 @@
 package com.egycps.abdulaziz.egycps.data.model;
 
+import android.location.Location;
+
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by abdulaziz on 10/2/16.
  */
-public class Branch {
+public class Branch{
 
     private String id;
     private String name;
@@ -58,4 +62,5 @@ public class Branch {
     public void setOffer_id(String offer_id) {
         this.offer_id = offer_id;
     }
+
 }

@@ -1,5 +1,6 @@
 package com.egycps.abdulaziz.egycps.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.ContextWrapper;
 import android.database.Cursor;
@@ -17,6 +18,9 @@ import android.net.Uri;
 import android.provider.MediaStore;
 import android.text.format.DateFormat;
 import android.util.Log;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -184,5 +188,15 @@ public class Utils {
 
         cursor.close();
         return uri.getPath();
+    }
+
+    public static boolean isGooglePlayServicesAvailable(Context context, Activity activity) {
+        int status = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
+        if (ConnectionResult.SUCCESS == status) {
+            return true;
+        } else {
+            GooglePlayServicesUtil.getErrorDialog(status, activity, 0).show();
+            return false;
+        }
     }
 }
