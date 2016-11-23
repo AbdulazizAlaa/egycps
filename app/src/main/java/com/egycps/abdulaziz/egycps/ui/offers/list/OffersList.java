@@ -3,6 +3,7 @@ package com.egycps.abdulaziz.egycps.ui.offers.list;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.annotation.NonNull;
@@ -30,11 +31,15 @@ import com.egycps.abdulaziz.egycps.utils.Utils;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.FusedLocationProviderApi;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,12 +74,18 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
     private GoogleApiClient googleApiClient;
     private LocationRequest mLocationRequest;
     private Location mCurrentLocation;
+    private PendingResult<LocationSettingsResult> result;
+    private LocationSettingsRequest.Builder builder;
+    public boolean isLocationON = false;
+    public int REQUEST_CHECK_SETTINGS = 5;
+
+    Context context;
 
     protected void createLocationRequest() {
         mLocationRequest = new LocationRequest();
         mLocationRequest.setInterval(INTERVAL);
         mLocationRequest.setFastestInterval(FASTEST_INTERVAL);
-        mLocationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+        mLocationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
     }
 
     public static Intent getStartIntent(Context context) {
@@ -130,6 +141,7 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
     }
 
     private void init() {
+        context = this;
         //GPS
         if (!Utils.isGooglePlayServicesAvailable(this, this)) {
             Log.i(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "init: Google play services not working");
@@ -141,6 +153,12 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
                     .addConnectionCallbacks(this)
                     .addOnConnectionFailedListener(this)
                     .build();
+
+            builder = new LocationSettingsRequest.Builder()
+                    .addLocationRequest(mLocationRequest);
+            builder.setAlwaysShow(true);
+
+            googleApiClient.connect();
 
 //            TODO: get last known location
             if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
@@ -154,6 +172,7 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
 //                return;
             }else{
                 Location location = fusedLocationProviderApi.getLastLocation(googleApiClient);
+                Log.d(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "location: "+(location==null));
                 if(location != null){
                     Log.d(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "Firing onLocationChanged..............................................");
                     Log.d(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "Location: lat: "+location.getLatitude()+" --- lng: "+location.getLongitude());
@@ -189,7 +208,6 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
         offersLayoutManager= new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         offersRecyclerView.setLayoutManager(offersLayoutManager);
 
-        final Context context = this;
         offersAdapter = new OffersAdapter(this, offersList);
         offersRecyclerView.setAdapter(offersAdapter);
         offersAdapter.getPositionClicks()
@@ -243,8 +261,6 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
     public void saveOffersListError(Throwable e){
         Log.e(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "saveOffersList: Error: "+e.getMessage());
         offersListRefreshL.setRefreshing(false);
-
-//        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -257,7 +273,6 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
     public void syncOffersListError(Throwable e) {
         Log.e(GlobalEntities.OFFERS_LIST_ACTIVITY_TAG, "syncOffersList: Error:: "+e.getMessage());
         mOffersListPresenter.loadOffers(id);
-//        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
@@ -329,6 +344,7 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
+        checkLocationSettings();
         startLocationUpdates();
     }
 
@@ -351,5 +367,54 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
         PreferencesHelper.saveToPrefs(OffersList.this, GlobalEntities.LATITUDE_TAG, String.valueOf(location.getLatitude()));
         PreferencesHelper.saveToPrefs(OffersList.this, GlobalEntities.LONGITUDE_TAG, String.valueOf(location.getLongitude()));
 
+    }
+
+    private void checkLocationSettings() {
+
+        result = LocationServices.SettingsApi.checkLocationSettings(googleApiClient, builder.build());
+
+        result.setResultCallback(new ResultCallback<LocationSettingsResult>() {
+
+            @Override
+            public void onResult(@NonNull LocationSettingsResult locationSettingsResult) {
+                final Status status = locationSettingsResult.getStatus();
+                switch (status.getStatusCode()) {
+                    case LocationSettingsStatusCodes.SUCCESS:
+
+                        isLocationON = true;
+
+                        if (ActivityCompat.checkSelfPermission(context, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                            return;
+                        }
+                        mCurrentLocation = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
+
+//                        if (mLocationSettingsListener != null) {
+//                            (LocationListener)OffersList.this.onLocationON();
+//                        }
+
+                        break;
+
+                    case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
+
+                        isLocationON = false;
+
+                        try {
+                            // This line will check the result and prompt a dialog if the device location settings is not enabled
+                            status.startResolutionForResult(OffersList.this, REQUEST_CHECK_SETTINGS);
+
+                        } catch (IntentSender.SendIntentException e) {
+                        }
+                        break;
+
+                    case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
+                        isLocationON = false;
+                        // Location settings are unavailable so not possible to show any dialog now
+//                        if (mLocationSettingsListener != null) {
+//                            mLocationSettingsListener.onLocationError();
+//                        }
+                        break;
+                }
+            }
+        });
     }
 }
