@@ -32,6 +32,8 @@ public class GlobalEntities {
     public final static String OFFER_OFFER_ID_TAG = "offer_offer_id";
     public final static String LIBRARY_CATEGORY_ID_TAG = "library_category_id";
     public final static String LIBRARY_CATEGORY_TITLE_TAG = "library_category_title";
+    public final static String MAGAZINE_CATEGORY_ID_TAG = "magazine_category_id";
+    public final static String MAGAZINE_CATEGORY_TITLE_TAG = "magazine_category_title";
     public final static String NEWS_TITLE_TAG = "news_title";
     public final static String NEWS_CONTENT_TAG = "news_content";
     public final static String NEWS_IMAGE_TAG = "news_image";
@@ -55,10 +57,12 @@ public class GlobalEntities {
     public final static String NEWS_ITEM_ACTIVITY_TAG = "news_item_activity";
     public final static String LIBRARIES_LIST_PRESENTER_TAG = "library_presenter";
     public final static String LIBRARIES_LIST_ACTIVITY_TAG = "library_activity";
-    public final static String LIBRARIES_CATEGORIES_PRESENTER_TAG = "library_presenter";
-    public final static String LIBRARIES_CATEGORIES_ACTIVITY_TAG = "library_activity";
+    public final static String LIBRARIES_CATEGORIES_PRESENTER_TAG = "library_cat_presenter";
+    public final static String LIBRARIES_CATEGORIES_ACTIVITY_TAG = "library_cat_activity";
     public final static String MAGAZINE_PRESENTER_TAG = "magazine_presenter";
     public final static String MAGAZINE_ACTIVITY_TAG = "magazine_activity";
+    public final static String MAGAZINE_CATEGORIES_PRESENTER_TAG = "magazine_cat_presenter";
+    public final static String MAGAZINE_CATEGORIES_ACTIVITY_TAG = "magazine_cat_activity";
     public final static String CONTACTS_PRESENTER_TAG = "contacts_presenter";
     public final static String CONTACTS_ACTIVITY_TAG = "contacts_activity";
     public final static String MEMBERS_PRESENTER_TAG = "members_presenter";

@@ -9,14 +9,14 @@ public class Book {
     private String title;
     private String image;
     private String file;
-    private String category_library_id;
+    private String category_id;
 
-    public Book(String id, String title, String image, String file, String category_library_id) {
+    public Book(String id, String title, String image, String file, String category_id) {
         this.id = id;
         this.title = title;
         this.image = image;
         this.file = file;
-        this.category_library_id = category_library_id;
+        this.category_id = category_id;
     }
 
     public String getId() {
@@ -51,11 +51,11 @@ public class Book {
         this.file = file;
     }
 
-    public String getCategory_library_id() {
-        return category_library_id;
+    public String getCategory_id() {
+        return category_id;
     }
 
-    public void setCategory_library_id(String category_library_id) {
-        this.category_library_id = category_library_id;
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
     }
 }

@@ -174,10 +174,11 @@ public class DatabaseHelper {
 
     }
 
-    public Observable<List<Magazine>> getMagazines(){
+    public Observable<List<Magazine>> getMagazines(String cat_id){
         Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: getMagazines");
         return mDB.createQuery(Db.MagazinesTable.TABLE_NAME,
-                "SELECT * FROM " + Db.MagazinesTable.TABLE_NAME)
+                "SELECT * FROM " + Db.MagazinesTable.TABLE_NAME +
+                " WHERE " + Db.MagazinesTable.COLUMN_CATEGORY_ID + "=" + cat_id)
                 .mapToList(new Func1<Cursor, Magazine>() {
                     @Override
                     public Magazine call(Cursor cursor) {
@@ -380,5 +381,54 @@ public class DatabaseHelper {
                     }
                 });
     }
+
+    public Observable<Category> setMagazineCategories(final Collection<Category> categories){
+        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setMagazineCategories: "+categories.size());
+        return Observable.create(new Observable.OnSubscribe<Category>() {
+            @Override
+            public void call(Subscriber<? super Category> subscriber) {
+                if(subscriber.isUnsubscribed()) return;
+                BriteDatabase.Transaction transaction = mDB.newTransaction();
+                try {
+//                    mDB.delete(Db.LibraryCategoriesTable.TABLE_NAME, null);
+                    for(Category category : categories){
+                        category.setDescription("No Description");
+                        long result = mDB.insert(Db.MagazineCategoriesTable.TABLE_NAME,
+                                Db.MagazineCategoriesTable.toContentValues(category),
+                                SQLiteDatabase.CONFLICT_REPLACE);
+                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: setMagazineCategories: category: "+category.getTitle()+" result: "+result);
+
+                        if(result >= 0) subscriber.onNext(category);
+                    }
+                    transaction.markSuccessful();
+                    subscriber.onCompleted();
+                }finally {
+                    transaction.end();
+                }
+            }
+        });
+
+    }
+
+
+    public Observable<List<Category>> getMagazineCategories(){
+        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "DatabaseHelper: getMagazineCategories");
+        return mDB.createQuery(Db.MagazineCategoriesTable.TABLE_NAME,
+                "SELECT * FROM " + Db.MagazineCategoriesTable.TABLE_NAME)
+                .mapToList(new Func1<Cursor, Category>() {
+                    @Override
+                    public Category call(Cursor cursor) {
+                        Category category = Db.MagazineCategoriesTable.parseCursor(cursor);
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "Cursor Count:: "+cursor.getCount());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "---------------------------------------");
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "id :: "+category.getId());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "title :: "+category.getTitle());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "desc :: "+category.getDescription());
+//                        Log.i(GlobalEntities.DATABASE_HELPER_TAG, "image :: "+category.getImage());
+                        return category;
+                    }
+                });
+    }
+
 
 }

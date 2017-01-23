@@ -58,7 +58,7 @@ public class LibraryList extends AppCompatActivity implements View.OnClickListen
         Log.i(GlobalEntities.LIBRARIES_LIST_ACTIVITY_TAG, "onCreate: LibraryList");
 
         if(getIntent() != null){
-            Log.i(GlobalEntities.LIBRARIES_LIST_ACTIVITY_TAG, "Title: "+getIntent().getStringExtra(GlobalEntities.OFFER_CATEGORY_TITLE_TAG));
+            Log.i(GlobalEntities.LIBRARIES_LIST_ACTIVITY_TAG, "Title: "+getIntent().getStringExtra(GlobalEntities.LIBRARY_CATEGORY_TITLE_TAG));
             title = getIntent().getStringExtra(GlobalEntities.LIBRARY_CATEGORY_TITLE_TAG);
             id = getIntent().getStringExtra(GlobalEntities.LIBRARY_CATEGORY_ID_TAG);
         }else{

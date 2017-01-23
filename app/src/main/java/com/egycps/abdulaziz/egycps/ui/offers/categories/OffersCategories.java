@@ -149,7 +149,6 @@ public class OffersCategories extends AppCompatActivity implements OffersCategor
     public void syncOffersCategoriesError(Throwable e) {
         Log.e(GlobalEntities.OFFERS_CATEGORIES_ACTIVITY_TAG, "syncError :: " + e.getMessage());
         mOffersCategoriesPresenter.loadOffersCategories();
-//        Snackbar.make(mainView, "Oops.. "+e.getMessage(), Snackbar.LENGTH_SHORT).show();
     }
 
     @Override

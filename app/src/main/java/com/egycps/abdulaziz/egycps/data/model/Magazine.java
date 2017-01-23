@@ -9,12 +9,22 @@ public class Magazine {
     private String title;
     private String image;
     private String pdf;
+    private String category_id;
 
-    public Magazine(String id, String title, String image, String pdf) {
+    public Magazine(String id, String title, String image, String pdf, String category_id) {
         this.id = id;
         this.title = title;
         this.image = image;
         this.pdf = pdf;
+        this.category_id = category_id;
+    }
+
+    public String getCategory_id() {
+        return category_id;
+    }
+
+    public void setCategory_id(String category_id) {
+        this.category_id = category_id;
     }
 
     public String getId() {

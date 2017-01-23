@@ -17,12 +17,12 @@ import com.egycps.abdulaziz.egycps.data.local.PreferencesHelper;
 import com.egycps.abdulaziz.egycps.data.remote.EgyCpsFirebaseMessagingService;
 import com.egycps.abdulaziz.egycps.ui.contact_us.ContactUs;
 import com.egycps.abdulaziz.egycps.ui.library.categories.LibraryCategories;
-import com.egycps.abdulaziz.egycps.ui.magazine.MagazineActivity;
+import com.egycps.abdulaziz.egycps.ui.magazine.categories.MagazineCategories;
+import com.egycps.abdulaziz.egycps.ui.magazine.list.MagazineActivity;
 import com.egycps.abdulaziz.egycps.ui.members.Members;
 import com.egycps.abdulaziz.egycps.ui.news.list.NewsActivity;
 import com.egycps.abdulaziz.egycps.ui.offers.categories.OffersCategories;
 import com.egycps.abdulaziz.egycps.utils.GlobalEntities;
-import com.google.android.gms.common.ConnectionResult;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 
@@ -142,7 +142,7 @@ public class Home extends Activity implements View.OnClickListener{
 
             case R.id.home_menu_magazine_item:
                 Log.i(GlobalEntities.HOME_ACTIVITY_TAG, "onClick: magazine");
-                startActivity(MagazineActivity.getStartIntent(this));
+                startActivity(MagazineCategories.getStartIntent(this));
                 break;
 
             case R.id.home_menu_members_item:

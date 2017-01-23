@@ -33,6 +33,9 @@ public interface Service {
     @GET("feed/libraryallCat.json")
     Observable<ArrayList<Category>> getLibraryCategories();
 
+    @GET("feed/magazineallCat.json")
+    Observable<ArrayList<Category>> getMagazineCategories();
+
     @GET("feed/offerCat.json")
     Observable<ArrayList<Offer>> getOffers(@Query("cat_id") String cat_id);
 
@@ -42,8 +45,8 @@ public interface Service {
     @GET("feed/libraryCat.json")
     Observable<ArrayList<Book>> getBooks(@Query("cat_id") String cat_id);
 
-    @GET("feed/magazines.json")
-    Observable<ArrayList<Magazine>> getMagazines();
+    @GET("feed/magazinebyCat.json")
+    Observable<ArrayList<Magazine>> getMagazines(@Query("cat_id") String cat_id);
 
     @GET("feed/allnews.json")
     Observable<ArrayList<News>> getNews();

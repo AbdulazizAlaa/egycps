@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.concurrent.Callable;
 
 
+import retrofit2.http.Query;
 import rx.Observable;
 
 /**
@@ -105,14 +106,29 @@ public class DataManager {
         return mDatabaseHelper.setLibraryCategories(libraryCategories);
     }
 
-    public Observable<ArrayList<Magazine>> syncMagazines(){
-        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncMagazines");
-        return mService.getMagazines().asObservable();
+    public Observable<ArrayList<Category>> syncMagazineCategories(){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncMagazineCategories");
+        return mService.getMagazineCategories().asObservable();
     }
 
-    public Observable<List<Magazine>> getMagazines(){
+    public Observable<List<Category>> getMagazineCategories(){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: getMagazineCategories");
+        return mDatabaseHelper.getMagazineCategories();
+    }
+
+    public Observable<Category> setMagazineCategories(List<Category> MagazineCategories){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: setMagazineCategories");
+        return mDatabaseHelper.setMagazineCategories(MagazineCategories);
+    }
+
+    public Observable<ArrayList<Magazine>> syncMagazines(String cat_id){
+        Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: syncMagazines");
+        return mService.getMagazines(cat_id).asObservable();
+    }
+
+    public Observable<List<Magazine>> getMagazines(String cat_id){
         Log.i(GlobalEntities.DATA_MANAGER_TAG, "DataManager: getMagazines");
-        return mDatabaseHelper.getMagazines();
+        return mDatabaseHelper.getMagazines(cat_id);
     }
 
     public Observable<Magazine> setMagazines(List<Magazine> magazines){

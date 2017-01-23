@@ -417,4 +417,5 @@ public class OffersList extends AppCompatActivity implements OffersListBaseView,
             }
         });
     }
+
 }
